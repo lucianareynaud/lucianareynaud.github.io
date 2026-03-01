@@ -305,7 +305,7 @@
 
   <div class="bio-section fade d2">
     <p class="bio">
-      I build the infrastructure that makes LLM systems <em>legible</em> — cost attribution, telemetry pipelines, and the observability layer that tells you why your AI bill doubled overnight. Production delivery for Fraport airport intelligence platforms, automated newsroom pipelines, and sales intelligence systems for major Brazilian enterprises.
+      I build the infrastructure that makes LLM systems <em>legible</em> — cost attribution, telemetry pipelines, and the observability layer that tells you why your AI bill doubled overnight. I make deliberate architectural decisions with cost as a first-class constraint, and I have the production numbers to back them up.
     </p>
   </div>
 
@@ -322,11 +322,11 @@
       </div>
       <div class="focus-item">
         <div class="focus-name">RAG & LLM Pipelines</div>
-        <div class="focus-desc">End-to-end RAG pipeline design, MLOps, guardrails, and structured extraction with GPT-4o and Whisper.</div>
+        <div class="focus-desc">End-to-end RAG pipeline design, MLOps, guardrails, and structured extraction via OpenAI API.</div>
       </div>
       <div class="focus-item">
-        <div class="focus-name">Data Engineering</div>
-        <div class="focus-desc">Real-time intelligence platforms on Databricks — airport analytics to newsroom automation at scale.</div>
+        <div class="focus-name">Production Infra</div>
+        <div class="focus-desc">Linux server operations, Docker deployments, CI/CD, and on-premises AI systems with 24/7 availability.</div>
       </div>
     </div>
   </section>
@@ -342,9 +342,9 @@
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
             <li>Implementing <strong>OpenTelemetry, Langfuse tracing, and FinOps cost attribution</strong> layer for LLM observability across production pipelines.</li>
-            <li>Built Fraport airport Wi-Fi intelligence module on Databricks — real-time passenger presence, connectivity patterns, and spatial heatmaps across Fortaleza & Porto Alegre.</li>
-            <li>Engineered <strong>OneStart Sales Intelligence</strong>: structured extraction via GPT-4o-mini → parallel enrichment (LinkedIn, web scraping, Google News RSS) → auto-generated personalized follow-up reports, compressing post-meeting research from hours to minutes.</li>
-            <li>Built <strong>RondaPress</strong>, a production newsroom intelligence platform: scrapes 52 sources daily (RSS, Playwright/Chromium, HTTP) → hybrid kNN + GPT-4o-mini relevance ranking (280-example labeled dataset, text-embedding-3-large, α=0.6) → surfaces top 15 stories and generates 5 editorial pitches twice daily. Replaced a fully manual workflow; 99.5% uptime, 150–300 articles processed per run.</li>
+            <li>Contributed to Fraport airport Wi-Fi intelligence module on Databricks — real-time dashboards for passenger presence and connectivity patterns across Fortaleza & Porto Alegre.</li>
+            <li>Built <strong>OneStart Sales Intelligence</strong>: structured extraction via GPT-4o-mini → parallel enrichment (LinkedIn, web scraping, Google News RSS) → auto-generated personalized follow-up reports, compressing post-meeting research from hours to minutes.</li>
+            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with deliberate FinOps architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 weighting) → cron-based batch delivery twice daily. <strong>Key cost decisions:</strong> 99% of requests routed to GPT-4o-mini, GPT-4o reserved exclusively for final pitch generation — resulting in $4.20/month at full production load with headroom to 6x source volume before hitting 25% of budget. Chose cron+query architecture over on-demand specifically to avoid 50x cost multiplication from per-user reprocessing. 99.5% uptime, 150–300 articles per run.</li>
             <li>Owns CI/CD for model deployments via Docker and Cloudflare Tunnels.</li>
           </ul>
         </div>
@@ -385,7 +385,7 @@
           <div class="exp-company">Blip</div>
           <ul class="exp-bullets">
             <li>Designed production AI assistants for <strong>Itaú and Bradesco</strong> — Brazil's two largest banks — including NLU fine-tuning, compliance review, and API integration design.</li>
-            <li>Collaborated with ML and data engineering teams to analyze conversation funnels in Power BI and iterate on model performance.</li>
+            <li>Collaborated with ML and data engineering teams to analyze conversation funnels via data dashboards and iterate on model performance.</li>
           </ul>
         </div>
       </div>
@@ -396,7 +396,7 @@
   <section class="fade d5">
     <div class="section-label">// Stack</div>
     <div class="stack-group">
-      <div class="stack-group-label">Core specialty</div>
+      <div class="stack-group-label">Core Specialty</div>
       <div class="stack-wrap">
         <span class="stack-item primary">OpenTelemetry</span>
         <span class="stack-item primary">Langfuse</span>
@@ -407,17 +407,29 @@
       </div>
     </div>
     <div class="stack-group" style="margin-top:16px">
-      <div class="stack-group-label">Infrastructure & ML</div>
+      <div class="stack-group-label">Infrastructure & Ops</div>
       <div class="stack-wrap">
         <span class="stack-item">Python</span>
         <span class="stack-item">Docker</span>
-        <span class="stack-item">Databricks</span>
+        <span class="stack-item">Linux</span>
+        <span class="stack-item">Ubuntu Server</span>
+        <span class="stack-item">SSH</span>
+        <span class="stack-item">tmux</span>
+        <span class="stack-item">Distributed Systems</span>
         <span class="stack-item">AWS</span>
         <span class="stack-item">Cloudflare Tunnels</span>
-        <span class="stack-item">GPT-4o</span>
-        <span class="stack-item">Dialogflow</span>
-        <span class="stack-item">Power BI</span>
-        <span class="stack-item">NLU</span>
+        <span class="stack-item">ngrok</span>
+      </div>
+    </div>
+    <div class="stack-group" style="margin-top:16px">
+      <div class="stack-group-label">AI & ML</div>
+      <div class="stack-wrap">
+        <span class="stack-item">OpenAI API</span>
+        <span class="stack-item">Anthropic API</span>
+        <span class="stack-item">Ollama</span>
+        <span class="stack-item">SLMs</span>
+        <span class="stack-item">Vector Search</span>
+        <span class="stack-item">Guardrails AI</span>
       </div>
     </div>
   </section>
