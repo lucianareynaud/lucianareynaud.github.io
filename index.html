@@ -305,7 +305,7 @@
 
   <div class="bio-section fade d2">
     <p class="bio">
-      I build the infrastructure that makes LLM systems <em>legible</em> — cost attribution, telemetry pipelines, and the observability layer that tells you why your AI bill doubled overnight. I make deliberate architectural decisions with cost as a first-class constraint, and I have the production numbers to back them up.
+      I build the infrastructure that makes LLM systems <em>legible</em> — cost attribution, telemetry pipelines, and the observability layer that tells you why your AI bill doubled overnight. Deliberate architectural decisions with cost and reliability as first-class constraints.
     </p>
   </div>
 
@@ -341,9 +341,9 @@
           <div class="exp-name">AI/ML Engineer</div>
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
-            <li>Implementing <strong>OpenTelemetry, Langfuse tracing, and FinOps cost attribution</strong> layer for LLM observability across production pipelines.</li>
+            <li>Sole engineer responsible for LLM application architecture at the lab — owns the full stack from infrastructure decisions to production deployment. Designing and implementing <strong>OpenTelemetry instrumentation, Langfuse tracing, and FinOps cost attribution</strong> layer as the observability standard for all LLM pipelines.</li>
             <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 99.5% uptime, 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel.</li>
-            <li>Built <strong>OneStart Sales Intelligence</strong>: structured extraction via GPT-4o-mini → parallel enrichment (LinkedIn, web scraping, Google News RSS) → auto-generated personalized follow-up reports, compressing post-meeting research from hours to minutes.</li>
+            <li>Built <strong>OneStart Sales Intelligence</strong>: end-to-end sales pipeline with dual deployment architecture (Docker + Vercel serverless) — audio/video transcription via OpenAI Whisper → GPT-4o-mini structured extraction (SPIN/BANT analysis, stakeholder mapping, pain point identification) → parallel enrichment via LinkedIn scraping (ScrapingDog/BrightData) and company website analysis → auto-generated strategic sales reports with industry-specific value propositions. FastAPI backend with Supabase storage, health endpoints, and full API surface for transcript management and enrichment workflows.</li>
             <li>Contributed to Fraport airport Wi-Fi intelligence module on Databricks — real-time dashboards for passenger presence and connectivity patterns across Fortaleza & Porto Alegre.</li>
             <li>Owns CI/CD for model deployments via Docker and Cloudflare Tunnels.</li>
           </ul>
@@ -353,13 +353,13 @@
       <div class="exp-item">
         <div class="exp-meta">Feb 2024 – Feb 2025<br>Ribeirão Preto · Brazil</div>
         <div>
-          <div class="exp-name">Founder & Technical Lead — HRF Grantee</div>
-          <div class="exp-company">Scalar School · Human Rights Foundation</div>
+          <div class="exp-name">Technical Author & Program Architect</div>
+          <div class="exp-company">Scalar School · Human Rights Foundation Grant</div>
           <ul class="exp-bullets">
-            <li>Received <strong>USD 25,000 from the Human Rights Foundation</strong> to develop technical education in distributed payment infrastructure engineering and open source financial systems.</li>
-            <li>Created Scalar School, a non-profit dedicated to developer education and inclusion in Brazil — grew community to 150+ developers across multiple cities.</li>
-            <li>Established university clubs at UFSCar and Fatec; organized multi-city developer meetups.</li>
-            <li>Translated <strong>"Mastering the Lightning Network"</strong> (O'Reilly Media) into Portuguese — a global reference on peer-to-peer instant payment infrastructure.</li>
+            <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead — designed the full program architecture, curriculum, and technical content for distributed systems and open-source financial infrastructure from scratch.</li>
+            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong> — a full-length technical book covering cryptographic primitives (hash functions, digital signatures, UTXOs, SegWit, Multisig, Bitcoin Script), distributed P2P network architecture (consensus rules, mempool, forks, 51% attack modeling), Lightning Network protocol (BOLTs, payment channels), Bitcoin Core RPC API, and open-source career development. Sole author, in English and Portuguese.</li>
+            <li>Translated <strong>"Mastering the Lightning Network"</strong> (O'Reilly Media) into Portuguese — expanding access to peer-to-peer payment infrastructure knowledge for Brazilian developers.</li>
+            <li>Scaled community to <strong>150+ developers</strong> across Brazil; established university chapters at UFSCar and FATEC; organized multi-city technical meetups.</li>
           </ul>
         </div>
       </div>
@@ -369,11 +369,11 @@
       <div class="exp-item">
         <div class="exp-meta">Jun 2023 – Mar 2024<br>Remote · Brazil</div>
         <div>
-          <div class="exp-name">AI Engineer — Conversational Systems</div>
-          <div class="exp-company">Voz AI</div>
+          <div class="exp-name">AI Systems Engineer</div>
+          <div class="exp-company">Voz AI (independent contractor)</div>
           <ul class="exp-bullets">
-            <li>Built end-to-end AI assistants for <strong>BMG Bank</strong> on Dialogflow, delivering production experiences ahead of the LLM wave.</li>
-            <li>Delivered UX writing and interaction design for financial platforms including Psagot Equity, ensuring clarity in high-stakes interactions.</li>
+            <li>Designed and specified full conversational AI system for <strong>Banco BMG</strong> (Saque Aniversário FGTS): 20 modular Dialogflow CX flows with complete error handling, unexpected input treatment, and unsupported format exits. Specified session parameter architecture and data tracking schema in collaboration with the data engineering team — defining how behavioral events would be captured and structured end-to-end.</li>
+            <li>Ensured full compliance with LGPD, Central Bank regulations, and KYC requirements embedded into the conversation logic — not as post-hoc review but as structural design constraints from the first flow.</li>
           </ul>
         </div>
       </div>
@@ -381,11 +381,13 @@
       <div class="exp-item">
         <div class="exp-meta">Nov 2021 – Jun 2023<br>Remote · Brazil</div>
         <div>
-          <div class="exp-name">AI Designer — Conversational Systems</div>
-          <div class="exp-company">Blip</div>
+          <div class="exp-name">Conversational AI Engineer</div>
+          <div class="exp-company">Blip (via Compass.uol)</div>
           <ul class="exp-bullets">
-            <li>Designed production AI assistants for <strong>Itaú and Bradesco</strong> — Brazil's two largest banks — including NLU fine-tuning, compliance review, and API integration design.</li>
-            <li>Collaborated with ML and data engineering teams to analyze conversation funnels via data dashboards and iterate on model performance.</li>
+            <li>Owned production AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> — five simultaneous bots across Brazil's largest financial institutions.</li>
+            <li>Designed anti-fraud WABA broadcast to <strong>1,077,000 users</strong>, generating <strong>R$2.3M in closed deal revenue</strong> — conversion rate high enough that the client's support team suspected a server bug.</li>
+            <li>Ran iterative NLU improvement cycles: accessed raw conversation logs, identified low-confidence intents and high-fallback patterns, analyzed most-used terms per audience segment, and proposed retraining decisions to the ML team — closing the feedback loop between user behavior and model behavior.</li>
+            <li>Designed intra-bot NPS, CSAT, and CES measurement flows on WhatsApp and Instagram — instrumenting production systems for continuous quality signal.</li>
           </ul>
         </div>
       </div>
@@ -443,7 +445,7 @@
         <div class="edu-year">2024</div>
         <div>
           <div class="edu-name">B.Tech in Systems Analysis & Development</div>
-          <div class="edu-inst">São Paulo State College of Technology (FATEC-SP) · paused</div>
+          <div class="edu-inst">São Paulo State College of Technology (FATEC-SP)</div>
           <div class="edu-inst" style="margin-top:6px; line-height:1.6;">Discrete Math · Calculus · Applied Statistics · Computer Architecture · Algorithms & Programming Logic · Software Engineering</div>
         </div>
       </div>
