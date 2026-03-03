@@ -28,8 +28,6 @@
     position: relative;
   }
 
-
-
   .wrap {
     position: relative;
     z-index: 1;
@@ -318,11 +316,11 @@
       </div>
       <div class="focus-item">
         <div class="focus-name">Observability</div>
-        <div class="focus-desc">OpenTelemetry instrumentation, Langfuse tracing, and trace-based debugging for AI pipelines in production.</div>
+        <div class="focus-desc">OpenTelemetry instrumentation, structured logging, and log-based debugging for AI pipelines in production.</div>
       </div>
       <div class="focus-item">
         <div class="focus-name">RAG & LLM Pipelines</div>
-        <div class="focus-desc">End-to-end RAG pipeline design, MLOps, guardrails, and structured extraction via OpenAI API.</div>
+        <div class="focus-desc">End-to-end RAG pipeline design, MLOps, Pydantic validation, and structured extraction via OpenAI API.</div>
       </div>
       <div class="focus-item">
         <div class="focus-name">Production Infra</div>
@@ -341,8 +339,8 @@
           <div class="exp-name">AI/ML Engineer</div>
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
-            <li>Engineer responsible for LLM application architecture at the lab — owns the full stack from infrastructure decisions to production deployment. Designing and implementing <strong>OpenTelemetry instrumentation, Langfuse tracing, and FinOps cost attribution</strong> layer as the observability standard for all LLM pipelines.</li>
-            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 99.5% uptime, 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel.</li>
+            <li>Engineer responsible for LLM application architecture at the lab — owns the full stack from infrastructure decisions to production deployment. Designing and implementing <strong>OpenTelemetry instrumentation and FinOps cost attribution</strong> layer as the observability standard for all LLM pipelines.</li>
+            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 99.5% uptime, 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel. Identified and corrected model drift via prompt engineering.</li>
             <li>Built <strong>OneStart Sales Intelligence</strong>: end-to-end sales pipeline with dual deployment architecture (Docker + Vercel serverless) — audio/video transcription via OpenAI Whisper → GPT-4o-mini structured extraction (SPIN/BANT analysis, stakeholder mapping, pain point identification) → parallel enrichment via LinkedIn scraping (ScrapingDog/BrightData) and company website analysis → auto-generated strategic sales reports with industry-specific value propositions. FastAPI backend with Supabase storage, health endpoints, and full API surface for transcript management and enrichment workflows.</li>
             <li>Contributed to Fraport airport Wi-Fi intelligence module on Databricks — real-time dashboards for passenger presence and connectivity patterns across Fortaleza & Porto Alegre.</li>
             <li>Owns CI/CD for model deployments via Docker and Cloudflare Tunnels.</li>
@@ -357,14 +355,12 @@
           <div class="exp-company">Scalar School · Human Rights Foundation Grant</div>
           <ul class="exp-bullets">
             <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead — designed the full program architecture, curriculum, and technical content for distributed systems and open-source financial infrastructure from scratch.</li>
-            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong> — a full-length technical book covering cryptographic primitives (hash functions, digital signatures, UTXOs, SegWit, Multisig, Bitcoin Script), distributed P2P network architecture (consensus rules, mempool, forks, 51% attack modeling), Lightning Network protocol (BOLTs, payment channels), Bitcoin Core RPC API, and open-source career development. Sole author, in English and Portuguese.</li>
+            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong> — a full-length technical book covering cryptographic primitives (hash functions, digital signatures, UTXOs, SegWit, Multisig, Bitcoin Script), distributed P2P network architecture (consensus rules, mempool, forks, 51% attack modeling), Lightning Network protocol (BOLTs, payment channels), Bitcoin Core RPC API, and open-source career development.</li>
             <li>Translated <strong>"Mastering the Lightning Network"</strong> (O'Reilly Media) into Portuguese — expanding access to peer-to-peer payment infrastructure knowledge for Brazilian developers.</li>
             <li>Scaled community to <strong>150+ developers</strong> across Brazil; established university chapters at UFSCar and FATEC; organized multi-city technical meetups.</li>
           </ul>
         </div>
       </div>
-
-
 
       <div class="exp-item">
         <div class="exp-meta">Jun 2023 – Mar 2024<br>Remote · Brazil</div>
@@ -372,7 +368,7 @@
           <div class="exp-name">AI Systems Engineer</div>
           <div class="exp-company">Voz AI (independent contractor)</div>
           <ul class="exp-bullets">
-            <li>Designed and specified full conversational AI system for <strong>Banco BMG</strong>: 20 modular Dialogflow CX flows with complete error handling, unexpected input treatment, and unsupported format exits. Specified session parameter architecture and data tracking schema in collaboration with the data engineering team — defining how behavioral events would be captured and structured end-to-end.</li>
+            <li>Designed and specified full conversational AI system for <strong>BMG Bank</strong>: 20 modular Dialogflow CX flows with complete error handling, unexpected input treatment, and unsupported format exits. Specified session parameter architecture and data tracking schema in collaboration with the data engineering team — defining how behavioral events would be captured and structured end-to-end.</li>
             <li>Ensured full compliance with LGPD, Central Bank regulations, and KYC requirements embedded into the conversation logic — not as post-hoc review but as structural design constraints from the first flow.</li>
           </ul>
         </div>
@@ -382,9 +378,9 @@
         <div class="exp-meta">Nov 2021 – Jun 2023<br>Remote · Brazil</div>
         <div>
           <div class="exp-name">Conversational AI Engineer</div>
-          <div class="exp-company">Blip </div>
+          <div class="exp-company">Blip</div>
           <ul class="exp-bullets">
-            <li>Owned production AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> — five simultaneous bots across Brazil's largest financial institutions.</li>
+            <li>Owned production AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> — five bots across Brazil's largest financial institutions.</li>
             <li>Designed anti-fraud WABA broadcast to <strong>1,077,000 users</strong>, generating <strong>R$2.3M in closed deal revenue</strong> — conversion rate high enough that the client's support team suspected a server bug.</li>
             <li>Ran iterative NLU improvement cycles: accessed raw conversation logs, identified low-confidence intents and high-fallback patterns, analyzed most-used terms per audience segment, and proposed retraining decisions to the ML team — closing the feedback loop between user behavior and model behavior.</li>
             <li>Designed intra-bot NPS, CSAT, and CES measurement flows on WhatsApp and Instagram — instrumenting production systems for continuous quality signal.</li>
@@ -401,7 +397,6 @@
       <div class="stack-group-label">Core Specialty</div>
       <div class="stack-wrap">
         <span class="stack-item primary">OpenTelemetry</span>
-        <span class="stack-item primary">Langfuse</span>
         <span class="stack-item primary">LLM FinOps</span>
         <span class="stack-item primary">Cost Attribution</span>
         <span class="stack-item primary">FastAPI</span>
@@ -422,6 +417,7 @@
         <span class="stack-item">Shell Scripting</span>
         <span class="stack-item">Cloudflare Tunnels</span>
         <span class="stack-item">ngrok</span>
+        <span class="stack-item">GitHub Actions</span>
       </div>
     </div>
     <div class="stack-group" style="margin-top:16px">
@@ -434,7 +430,14 @@
         <span class="stack-item">Ollama</span>
         <span class="stack-item">SLMs</span>
         <span class="stack-item">Vector Search</span>
-        <span class="stack-item">Guardrails AI</span>
+        <span class="stack-item">Pydantic</span>
+      </div>
+    </div>
+    <div class="stack-group" style="margin-top:16px">
+      <div class="stack-group-label">Dev Tooling</div>
+      <div class="stack-wrap">
+        <span class="stack-item">Claude Code</span>
+        <span class="stack-item">Cursor</span>
       </div>
     </div>
   </section>
@@ -466,3 +469,8 @@
   </section>
 
   <footer class="fade d7">
+  </footer>
+
+</div>
+</body>
+</html>
