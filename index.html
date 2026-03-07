@@ -301,12 +301,14 @@
     </div>
   </header>
 
+  <!-- CHANGE 1: bio — added closing sentence on compliance/auditability as structural constraints -->
   <div class="bio-section fade d2">
     <p class="bio">
-      I build LLM systems that work in production and the infrastructure that makes them legible — reliable pipelines, observable infrastructure, cost attribution, and telemetry that explain performance, failure, and spend. I make deliberate architectural decisions with cost and reliability as first-class constraints, owning the stack from infrastructure to production layer.
+      I build LLM systems that work in production and the infrastructure that makes them legible — reliable pipelines, observable infrastructure, cost attribution, and telemetry that explain performance, failure, and spend. I make deliberate architectural decisions with cost and reliability as first-class constraints, owning the stack from infrastructure to production layer. <em>Compliance, auditability, and risk attribution are structural design inputs — not post-deployment concerns.</em>
     </p>
   </div>
 
+  <!-- CHANGE 2: Focus grid — replaced "Production Infra" with "AI Controls & Auditability" -->
   <section class="fade d3">
     <div class="section-label">// Focus</div>
     <div class="focus-grid">
@@ -323,8 +325,8 @@
         <div class="focus-desc">End-to-end RAG pipeline design, MLOps, Pydantic validation, and structured extraction via OpenAI API.</div>
       </div>
       <div class="focus-item">
-        <div class="focus-name">Production Infra</div>
-        <div class="focus-desc">Linux server operations, Docker deployments, CI/CD, and on-premises AI systems with 24/7 availability.</div>
+        <div class="focus-name">AI Controls & Auditability</div>
+        <div class="focus-desc">Drift detection, decision logging, risk attribution, and continuous quality signal for autonomous systems in production.</div>
       </div>
     </div>
   </section>
@@ -340,7 +342,8 @@
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
             <li>Engineer responsible for LLM application architecture at the lab — owns the full stack from infrastructure decisions to production deployment. Designing and implementing <strong>OpenTelemetry instrumentation and FinOps cost attribution</strong> layer as the observability standard for all LLM pipelines.</li>
-            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 99.5% uptime, 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel. Identified and corrected model drift via prompt engineering.</li>
+            <!-- CHANGE 3: RondaPress bullet — drift detection reframed as continuous monitoring cycle with explicit detection criterion -->
+            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 99.5% uptime, 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel. <strong>Maintained a continuous model monitoring cycle</strong>: tracked output distribution against labeled baseline, identified behavioral drift via degradation in classification confidence and fallback rate, and applied targeted prompt corrections — closing the loop between observed model behavior and production quality criteria.</li>
             <li>Built <strong>OneStart Sales Intelligence</strong>: end-to-end sales pipeline with dual deployment architecture (Docker + Vercel serverless) — audio/video transcription via OpenAI Whisper → GPT-4o-mini structured extraction (SPIN/BANT analysis, stakeholder mapping, pain point identification) → parallel enrichment via LinkedIn scraping (ScrapingDog/BrightData) and company website analysis → auto-generated strategic sales reports with industry-specific value propositions. FastAPI backend with Postgres storage, health endpoints, and full API surface for transcript management and enrichment workflows.</li>
             <li>Contributed to Fraport airport Wi-Fi intelligence module on Databricks — real-time dashboards for passenger presence and connectivity patterns across Fortaleza & Porto Alegre.</li>
             <li>Owns CI/CD for model deployments via Docker and Cloudflare Tunnels.</li>
@@ -368,8 +371,9 @@
           <div class="exp-name">AI Systems Engineer</div>
           <div class="exp-company">Voz AI (independent contractor)</div>
           <ul class="exp-bullets">
+            <!-- CHANGE 4: LGPD bullet moved to first position -->
+            <li><strong>Embedded LGPD, Central Bank regulations, and KYC requirements as structural design constraints</strong> from the first flow — not as post-hoc compliance review. Regulatory adherence was architected into the conversation logic itself, defining what data could be captured, how it was classified, and under what conditions it could be passed downstream.</li>
             <li>Designed and specified full conversational AI system for <strong>BMG Bank</strong>: 20 modular Dialogflow CX flows with complete error handling, unexpected input treatment, and unsupported format exits. Specified session parameter architecture and data tracking schema in collaboration with the data engineering team — defining how behavioral events would be captured and structured end-to-end.</li>
-            <li>Ensured full compliance with LGPD, Central Bank regulations, and KYC requirements embedded into the conversation logic — not as post-hoc review but as structural design constraints from the first flow.</li>
           </ul>
         </div>
       </div>
