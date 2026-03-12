@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luciana Reynaud Ferreira — AI Systems Engineer & FinOps</title>
+<title>Luciana Reynaud Ferreira — AI Production Systems Engineer</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=Geist:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
 
   :root {
-    --bg: #f5f2ec;
-    --ink: #1a1814;
-    --muted: #8a8478;
-    --rule: #d8d3c8;
-    --accent: #2a4a3e;
-    --accent-light: #e8f0ed;
+    --bg: #f4f1eb;
+    --ink: #18160f;
+    --muted: #7a7568;
+    --faint: #c8c3b8;
+    --rule: #ddd8ce;
+    --accent: #1e3d32;
+    --accent-mid: #2f5c47;
+    --accent-light: #e6eeea;
+    --warm-white: #faf8f4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,79 +25,77 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Geist', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 300;
     min-height: 100vh;
-    position: relative;
+  }
+
+  .fade { opacity: 0; animation: appear 0.7s ease forwards; }
+  .d1{animation-delay:.08s} .d2{animation-delay:.18s} .d3{animation-delay:.28s}
+  .d4{animation-delay:.38s} .d5{animation-delay:.48s} .d6{animation-delay:.58s}
+  .d7{animation-delay:.68s} .d8{animation-delay:.78s}
+  @keyframes appear {
+    from { opacity:0; transform:translateY(10px); }
+    to   { opacity:1; transform:translateY(0); }
   }
 
   .wrap {
-    position: relative;
-    z-index: 1;
-    max-width: 780px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  .fade { opacity: 0; animation: appear 0.8s forwards; }
-  .d1{animation-delay:0.1s} .d2{animation-delay:0.2s} .d3{animation-delay:0.3s}
-  .d4{animation-delay:0.4s} .d5{animation-delay:0.5s} .d6{animation-delay:0.6s} .d7{animation-delay:0.7s}
-
-  @keyframes appear {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+    padding: 0 36px;
   }
 
   header {
-    padding-top: 80px;
-    padding-bottom: 56px;
+    padding-top: 72px;
+    padding-bottom: 52px;
     border-bottom: 1px solid var(--rule);
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: end;
-    gap: 24px;
+    gap: 32px;
   }
 
   .name {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(40px, 8vw, 70px);
-    line-height: 0.95;
-    letter-spacing: -1px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(42px, 8.5vw, 72px);
+    line-height: 0.93;
+    letter-spacing: -1.5px;
   }
-
-  .name em { font-style: italic; color: var(--accent); }
+  .name em { font-style: italic; color: var(--accent-mid); }
 
   .title-block { text-align: right; }
 
   .role {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--muted);
-    line-height: 1.9;
+    line-height: 2.1;
   }
 
   .location {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--faint);
+    margin-top: 8px;
+    letter-spacing: 1px;
   }
 
   .bio-section {
-    padding: 48px 0;
+    padding: 52px 0 48px;
     border-bottom: 1px solid var(--rule);
   }
 
   .bio {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(17px, 2.8vw, 21px);
-    line-height: 1.7;
-    max-width: 640px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(16.5px, 2.6vw, 20px);
+    line-height: 1.72;
+    max-width: 660px;
   }
-
-  .bio em { font-style: italic; color: var(--accent); }
+  .bio em { font-style: italic; color: var(--accent-mid); }
 
   section {
     padding: 48px 0;
@@ -102,12 +103,44 @@
   }
 
   .section-label {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--faint);
     margin-bottom: 28px;
+  }
+
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+  }
+
+  .hl-item {
+    background: var(--bg);
+    padding: 20px 22px;
+    transition: background 0.18s;
+  }
+  .hl-item:hover { background: var(--accent-light); }
+
+  .hl-metric {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hl-metric em { font-style: italic; }
+
+  .hl-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.2px;
   }
 
   .focus-grid {
@@ -120,106 +153,106 @@
   .focus-item {
     background: var(--bg);
     padding: 22px 24px;
-    transition: background 0.2s;
+    transition: background 0.18s;
   }
-
   .focus-item:hover { background: var(--accent-light); }
 
   .focus-name {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
     font-weight: 500;
     color: var(--accent);
-    margin-bottom: 7px;
-    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
   }
 
-  .focus-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .focus-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
 
-  .exp-list { display: flex; flex-direction: column; gap: 32px; }
+  .exp-list { display: flex; flex-direction: column; gap: 36px; }
 
   .exp-item {
     display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 24px;
+    grid-template-columns: 160px 1fr;
+    gap: 28px;
   }
 
   .exp-meta {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
     color: var(--muted);
-    line-height: 1.7;
-    padding-top: 2px;
+    line-height: 1.9;
+    padding-top: 3px;
+    letter-spacing: 0.3px;
   }
 
-  .exp-name { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
+  .exp-role { font-size: 14.5px; font-weight: 500; margin-bottom: 3px; letter-spacing: -0.2px; }
 
   .exp-company {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    margin-bottom: 10px;
-    letter-spacing: 0.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent-mid);
+    margin-bottom: 14px;
+    letter-spacing: 0.6px;
   }
 
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
   .exp-bullets li {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--muted);
-    line-height: 1.65;
-    padding-left: 14px;
+    line-height: 1.7;
+    padding-left: 16px;
     position: relative;
   }
-
   .exp-bullets li::before {
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--rule);
-    font-size: 11px;
+    color: var(--faint);
+    font-size: 10px;
+    top: 2px;
   }
-
   .exp-bullets li strong { color: var(--ink); font-weight: 500; }
+  .exp-bullets li em { font-style: italic; color: var(--accent); }
 
-  .stack-group { margin-bottom: 16px; }
+  .stack-group { margin-bottom: 18px; }
   .stack-group:last-child { margin-bottom: 0; }
 
   .stack-group-label {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
+    color: var(--faint);
+    margin-bottom: 11px;
   }
 
-  .stack-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
 
   .stack-item {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    padding: 5px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 5px 13px;
     border: 1px solid var(--rule);
     color: var(--muted);
     transition: all 0.15s;
     cursor: default;
   }
-
   .stack-item:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-  .stack-item.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  .stack-item.primary { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-light); }
 
-  .edu-list { display: flex; flex-direction: column; gap: 16px; }
+  .edu-list { display: flex; flex-direction: column; gap: 18px; }
 
   .edu-item {
     display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 24px;
+    grid-template-columns: 160px 1fr;
+    gap: 28px;
   }
-
-  .edu-year { font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--muted); padding-top: 2px; }
-  .edu-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-  .edu-inst { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); }
+  .edu-year { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--muted); padding-top: 3px; }
+  .edu-name { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .edu-inst { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); }
+  .edu-courses { font-size: 12px; color: var(--faint); margin-top: 6px; line-height: 1.6; }
 
   .contact-row {
     display: flex;
@@ -229,59 +262,52 @@
   }
 
   .contact-link {
-    font-family: 'Geist Mono', monospace;
-    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
     color: var(--muted);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: color 0.2s;
+    transition: color 0.18s;
   }
-
   .contact-link:hover { color: var(--accent); }
-  .contact-link::before { content: '↗'; font-size: 10px; }
+  .contact-link::before { content: '↗'; font-size: 9px; }
 
   .avail-badge {
     margin-left: auto;
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--accent);
     background: var(--accent-light);
-    padding: 6px 14px;
-    border: 1px solid var(--accent);
+    padding: 7px 15px;
+    border: 1px solid var(--accent-mid);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
   }
 
   .avail-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--accent);
-    animation: pulse 2s infinite;
+    animation: pulse 2.2s infinite;
   }
-
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.25; }
   }
 
-  footer { padding: 32px 0 64px; }
+  footer { padding: 28px 0 60px; }
+  .footer-text { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faint); }
 
-  .footer-text {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     header { grid-template-columns: 1fr; }
     .title-block { text-align: left; }
-    .focus-grid { grid-template-columns: 1fr; }
-    .exp-item, .edu-item { grid-template-columns: 1fr; gap: 4px; }
+    .focus-grid, .highlights { grid-template-columns: 1fr; }
+    .exp-item, .edu-item { grid-template-columns: 1fr; gap: 5px; }
     .contact-row { flex-direction: column; align-items: flex-start; }
     .avail-badge { margin-left: 0; }
     .wrap { padding: 0 20px; }
@@ -296,57 +322,79 @@
       <div class="name">Luciana<br>Reynaud <em>Ferreira</em></div>
     </div>
     <div class="title-block">
-      <div class="role">AI Systems Engineer<br>LLM Infrastructure<br>Observability · FinOps
+      <div class="role">
+        LLM Production Systems Engineer<br>
+        FinOps · Reliability · Governance
+      </div>
       <div class="location">Brazil · Remote</div>
     </div>
   </header>
 
-  <!-- CHANGE 1: bio — added closing sentence on compliance/auditability as structural constraints -->
   <div class="bio-section fade d2">
     <p class="bio">
-      I build LLM systems that work in production and the infrastructure that makes them legible — reliable pipelines, observable infrastructure, cost attribution, and telemetry that explain performance, failure, and spend. I make deliberate architectural decisions with cost and reliability as first-class constraints, owning the stack from infrastructure to production layer. <em>Compliance, auditability, and risk attribution are structural design inputs — not post-deployment concerns.</em>
+      I work in the hardest layer of enterprise AI adoption: turning LLM systems into production infrastructure that can be controlled, observed, and justified economically. I own the stack from deployment architecture to telemetry, model routing, and cost attribution, with <em>cost, reliability, compliance, and auditability treated as engineering constraints from the start.</em> I am most useful when AI stops being a demo and starts becoming budget, exposure, and infrastructure.
     </p>
   </div>
 
-  <!-- CHANGE 2: Focus grid — replaced "Production Infra" with "AI Controls & Auditability" -->
   <section class="fade d3">
-    <div class="section-label">// Focus</div>
-    <div class="focus-grid">
-      <div class="focus-item">
-        <div class="focus-name">LLM FinOps</div>
-        <div class="focus-desc">Cost attribution, token budget management, and spend visibility across multi-model production systems.</div>
+    <div class="section-label">// Selected Impact</div>
+    <div class="highlights">
+      <div class="hl-item">
+        <div class="hl-metric">50×</div>
+        <div class="hl-desc">Cost reduction through operating-model redesign and model routing — projected spend reduced from roughly $210 to $4.20/month, with 3.5% budget utilization and documented headroom for source expansion.</div>
       </div>
-      <div class="focus-item">
-        <div class="focus-name">Observability</div>
-        <div class="focus-desc">OpenTelemetry instrumentation, structured logging, and log-based debugging for AI pipelines in production.</div>
+      <div class="hl-item">
+        <div class="hl-metric">99.5%</div>
+        <div class="hl-desc">Uptime on self-operated LLM pipeline processing 150–300 articles per run, twice daily, with per-source structured logging and health endpoints.</div>
       </div>
-      <div class="focus-item">
-        <div class="focus-name">RAG & LLM Pipelines</div>
-        <div class="focus-desc">End-to-end RAG pipeline design, MLOps, Pydantic validation, and structured extraction via OpenAI API.</div>
+      <div class="hl-item">
+        <div class="hl-metric">1.07M</div>
+        <div class="hl-desc">Users reached in a single WABA broadcast for Itaú at Blip, generating approximately R$2.3M in closed-deal revenue under regulated operating constraints.</div>
       </div>
-      <div class="focus-item">
-        <div class="focus-name">AI Controls & Auditability</div>
-        <div class="focus-desc">Drift detection, decision logging, risk attribution, and continuous quality signal for autonomous systems in production.</div>
+      <div class="hl-item">
+        <div class="hl-metric"><em>Evaluation-driven</em></div>
+        <div class="hl-desc">Production monitoring loop anchored in labeled baselines, confidence degradation, fallback behavior, and targeted correction rather than intuition-led deployment.</div>
       </div>
     </div>
   </section>
 
   <section class="fade d4">
+    <div class="section-label">// Focus</div>
+    <div class="focus-grid">
+      <div class="focus-item">
+        <div class="focus-name">LLM FinOps & Cost Attribution</div>
+        <div class="focus-desc">Token budget design, model routing, batch vs. on-demand cost analysis, and spend visibility across production AI systems.</div>
+      </div>
+      <div class="focus-item">
+        <div class="focus-name">Observability & Telemetry</div>
+        <div class="focus-desc">OpenTelemetry instrumentation, structured logging, tracing, and operational visibility for model-driven systems in production.</div>
+      </div>
+      <div class="focus-item">
+        <div class="focus-name">Production Reliability</div>
+        <div class="focus-desc">Deployment architecture, evaluation loops, health surfaces, and monitoring workflows that detect and correct behavioral drift.</div>
+      </div>
+      <div class="focus-item">
+        <div class="focus-name">AI Governance & Compliance</div>
+        <div class="focus-desc">Risk-aware system design, decision logging, LGPD-aware architecture, and auditability for regulated or high-consequence environments.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fade d5">
     <div class="section-label">// Experience</div>
     <div class="exp-list">
 
       <div class="exp-item">
         <div class="exp-meta">Feb 2025 – Present<br>Remote · Brazil</div>
         <div>
-          <div class="exp-name">AI Systems Engineer</div>
+          <div class="exp-role">AI Systems Engineer</div>
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
-            <li>Engineer responsible for LLM application architecture at the lab — owns the full stack from infrastructure decisions to production deployment. Designing and implementing <strong>OpenTelemetry instrumentation and FinOps cost attribution</strong> layer as the observability standard for all LLM pipelines.</li>
-            <!-- CHANGE 3: RondaPress bullet — drift detection reframed as continuous monitoring cycle with explicit detection criterion -->
-            <li>Engineered <strong>RondaPress</strong>, a production newsroom intelligence platform with cost-first architecture: 52-source scraper (RSS/Playwright/HTTP) → hybrid kNN + LLM relevance ranking (text-embedding-3-large, 280-example labeled dataset, α=0.6 LLM / 0.4 kNN weighting) → automated batch delivery twice daily. Evaluated 5 scaling strategies and chose cron+query over on-demand to avoid 50x cost multiplication ($4.20/month vs ~$210/month projected). Key model routing decision: 99% GPT-4o-mini for classification, GPT-4o reserved exclusively for final pitch generation — achieving 3.5% budget utilization with headroom to 6x source volume. Production observability: per-source logging, ranker run logs, classification error tracking, and FastAPI health endpoints. 150–300 articles per run. Deployed on Ubuntu Server via Docker + Cloudflare Tunnel. <strong>Maintained a continuous model monitoring cycle</strong>: tracked output distribution against labeled baseline, identified behavioral drift via degradation in classification confidence and fallback rate, and applied targeted prompt corrections — closing the loop between observed model behavior and production quality criteria.</li>
-            <li>Built <strong>OneStart Sales Intelligence</strong>: end-to-end sales pipeline with dual deployment architecture (Docker + Vercel serverless) — audio/video transcription via OpenAI Whisper → GPT-4o-mini structured extraction (SPIN/BANT analysis, stakeholder mapping, pain point identification) → parallel enrichment via LinkedIn scraping (ScrapingDog/BrightData) and company website analysis → auto-generated strategic sales reports with industry-specific value propositions. FastAPI backend with Postgres storage, health endpoints, and full API surface for transcript management and enrichment workflows.</li>
-            <li>Contributed to Fraport airport Wi-Fi intelligence module on Databricks — real-time dashboards for passenger presence and connectivity patterns across Fortaleza & Porto Alegre.</li>
-            <li>Owns CI/CD for model deployments via Docker and Cloudflare Tunnels.</li>
+            <li>Own the lab’s LLM application stack across deployment, observability, and production operating decisions, while designing <strong>OpenTelemetry instrumentation and FinOps cost attribution</strong> as the telemetry baseline for model-driven systems.</li>
+            <li><strong>RondaPress — production economics architecture:</strong> Built a 52-source newsroom intelligence platform with hybrid kNN plus LLM ranking. The decisive economic move was not model selection but operating-model redesign: replacing per-employee, on-demand generation with two shared daily deliveries, morning and afternoon. This preserved editorial utility while eliminating the redundancy that made cost scale chaotically. Within that architecture, implemented model routing with 99% of classification traffic on GPT-4o-mini and GPT-4o reserved for final pitch generation, achieving <strong>3.5% budget utilization</strong> and reducing projected monthly spend from roughly <strong>$210 to $4.20</strong>, with headroom for source expansion.</li>
+            <li><strong>Production monitoring:</strong> Maintained an evaluation-driven monitoring loop using labeled baselines, confidence behavior, fallback patterns, and structured logs to detect drift and apply targeted prompt or routing corrections.</li>
+            <li><strong>OneStart Sales Intelligence:</strong> Built an end-to-end pipeline for transcription, structured extraction, stakeholder and pain-point mapping, enrichment from LinkedIn and company websites, and automated strategic sales report generation. Implemented FastAPI backend, Postgres storage, and dual deployment across Docker and serverless surfaces.</li>
+            <li>Contributed to Fraport airport intelligence on Databricks, supporting real-time dashboards for passenger presence and connectivity behavior across Fortaleza and Porto Alegre.</li>
           </ul>
         </div>
       </div>
@@ -354,13 +402,13 @@
       <div class="exp-item">
         <div class="exp-meta">Feb 2024 – Feb 2025<br>Ribeirão Preto · Brazil</div>
         <div>
-          <div class="exp-name">Technical Lead</div>
-          <div class="exp-company">Human Rights Foundation</div>
+          <div class="exp-role">Technical Lead</div>
+          <div class="exp-company">Scalar School · Human Rights Foundation Grant</div>
           <ul class="exp-bullets">
-            <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead — designed the full program architecture, curriculum, and technical content for distributed systems and open-source financial infrastructure from scratch.</li>
-            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong> — a full-length technical book covering cryptographic primitives (hash functions, digital signatures, UTXOs, SegWit, Multisig, Bitcoin Script), distributed P2P network architecture (consensus rules, mempool, forks, 51% attack modeling), Lightning Network protocol (BOLTs, payment channels), Bitcoin Core RPC API, and open-source career development.</li>
-            <li>Translated <strong>"Mastering the Lightning Network"</strong> (O'Reilly Media) into Portuguese — expanding access to peer-to-peer payment infrastructure knowledge for Brazilian developers.</li>
-            <li>Scaled community to <strong>150+ developers</strong> across Brazil; established university chapters at UFSCar and FATEC; organized multi-city technical meetups.</li>
+            <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead, designing the full program architecture, curriculum, and technical content for distributed systems and open financial infrastructure.</li>
+            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong>, a full-length technical reference covering cryptographic primitives, Bitcoin architecture, consensus behavior, Lightning Network foundations, and Bitcoin Core RPC.</li>
+            <li>Translated <strong>"Mastering the Lightning Network"</strong> into Portuguese, expanding access to protocol-level payment infrastructure knowledge for Brazilian developers.</li>
+            <li>Scaled the initiative to <strong>150+ developers</strong>, established university chapters, and organized technical community formation around protocol-level systems reasoning.</li>
           </ul>
         </div>
       </div>
@@ -368,12 +416,11 @@
       <div class="exp-item">
         <div class="exp-meta">Jun 2023 – Mar 2024<br>Remote · Brazil</div>
         <div>
-          <div class="exp-name">AI Systems Engineer</div>
-          <div class="exp-company">Voz AI (independent contractor)</div>
+          <div class="exp-role">AI Systems Engineer</div>
+          <div class="exp-company">Voz AI · independent contractor</div>
           <ul class="exp-bullets">
-            <!-- CHANGE 4: LGPD bullet moved to first position -->
-            <li><strong>Embedded LGPD, Central Bank regulations, and KYC requirements as structural design constraints</strong> from the first flow — not as post-hoc compliance review. Regulatory adherence was architected into the conversation logic itself, defining what data could be captured, how it was classified, and under what conditions it could be passed downstream.</li>
-            <li>Designed and specified full conversational AI system for <strong>BMG Bank</strong>: 20 modular Dialogflow CX flows with complete error handling, unexpected input treatment, and unsupported format exits. Specified session parameter architecture and data tracking schema in collaboration with the data engineering team — defining how behavioral events would be captured and structured end-to-end.</li>
+            <li><strong>Embedded LGPD, Central Bank regulations, and KYC requirements as design constraints</strong> from the first flow, treating compliance as architecture rather than review-layer overhead.</li>
+            <li>Designed and specified the conversational AI system for <strong>BMG Bank</strong>: 20 modular Dialogflow CX flows with full error handling, unsupported-format exits, session parameter architecture, and behavioral event tracking defined alongside the data engineering layer.</li>
           </ul>
         </div>
       </div>
@@ -381,13 +428,13 @@
       <div class="exp-item">
         <div class="exp-meta">Nov 2021 – Jun 2023<br>Remote · Brazil</div>
         <div>
-          <div class="exp-name">Conversational AI Engineer</div>
+          <div class="exp-role">Conversational Systems Engineer</div>
           <div class="exp-company">Blip</div>
           <ul class="exp-bullets">
-            <li>Owned production AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> — five bots across Brazil's largest financial institutions.</li>
-            <li>Designed anti-fraud WABA broadcast to <strong>1,077,000 users</strong>, generating <strong>R$2.3M in closed deal revenue</strong> — conversion rate high enough that the client's support team suspected a server bug.</li>
-            <li>Ran iterative NLU improvement cycles: accessed raw conversation logs, identified low-confidence intents and high-fallback patterns, analyzed most-used terms per audience segment, and proposed retraining decisions to the ML team — closing the feedback loop between user behavior and model behavior.</li>
-            <li>Designed intra-bot NPS, CSAT, and CES measurement flows on WhatsApp and Instagram — instrumenting production systems for continuous quality signal.</li>
+            <li>Owned production customer-facing AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> across regulated financial and insurance environments.</li>
+            <li>Designed an anti-fraud WABA broadcast to <strong>1,077,000 users</strong>, generating approximately <strong>R$2.3M in closed-deal revenue</strong> within LGPD and WhatsApp Business API constraints.</li>
+            <li>Ran iterative model-quality cycles from raw production logs, identifying fallback concentration, low-confidence behavior, and audience-specific vocabulary to inform retraining and system refinement.</li>
+            <li>Designed in-bot NPS, CSAT, and CES measurement flows on WhatsApp and Instagram, instrumenting live systems for continuous quality signal.</li>
           </ul>
         </div>
       </div>
@@ -395,61 +442,64 @@
     </div>
   </section>
 
-  <section class="fade d5">
+  <section class="fade d6">
     <div class="section-label">// Stack</div>
+
     <div class="stack-group">
       <div class="stack-group-label">Core Specialty</div>
       <div class="stack-wrap">
         <span class="stack-item primary">LLM FinOps</span>
         <span class="stack-item primary">Cost Attribution</span>
-        <span class="stack-item primary">FastAPI</span>
-        <span class="stack-item primary">Vector Search</span>
-        <span class="stack-item primary">Embeddings</span>
+        <span class="stack-item primary">Model Routing</span>
+        <span class="stack-item primary">Observability</span>
+        <span class="stack-item primary">OpenTelemetry</span>
+        <span class="stack-item primary">AI Governance</span>
       </div>
     </div>
-    <div class="stack-group" style="margin-top:16px">
-      <div class="stack-group-label">Infrastructure & Ops</div>
+
+    <div class="stack-group" style="margin-top:18px">
+      <div class="stack-group-label">Infrastructure & Production</div>
       <div class="stack-wrap">
         <span class="stack-item">Python</span>
+        <span class="stack-item">FastAPI</span>
         <span class="stack-item">Docker</span>
-        <span class="stack-item">Linux</span>
-        <span class="stack-item">Ubuntu Server</span>
-        <span class="stack-item">SSH</span>
-        <span class="stack-item">Distributed Systems</span>
-        <span class="stack-item">Cloud Platforms</span>
-        <span class="stack-item">Shell Scripting</span>
-        <span class="stack-item">Cloudflare Tunnels</span>
-        <span class="stack-item">ngrok</span>
+        <span class="stack-item">Linux · Ubuntu Server</span>
         <span class="stack-item">GitHub Actions</span>
+        <span class="stack-item">Cloudflare Tunnels</span>
+        <span class="stack-item">Postgres</span>
+        <span class="stack-item">Databricks</span>
+        <span class="stack-item">Distributed Systems</span>
       </div>
     </div>
-    <div class="stack-group" style="margin-top:16px">
+
+    <div class="stack-group" style="margin-top:18px">
       <div class="stack-group-label">AI & ML</div>
       <div class="stack-wrap">
         <span class="stack-item">OpenAI API</span>
         <span class="stack-item">Anthropic API</span>
         <span class="stack-item">Whisper</span>
         <span class="stack-item">Hugging Face</span>
-        <span class="stack-item">Ollama</span>
-        <span class="stack-item">SLMs</span>
+        <span class="stack-item">Vector Search</span>
+        <span class="stack-item">Embeddings</span>
         <span class="stack-item">RAG Pipelines</span>
-        <span class="stack-item">OpenTelemetry</span>
         <span class="stack-item">Pydantic</span>
       </div>
     </div>
-    <div class="stack-group" style="margin-top:16px">
-      <div class="stack-group-label">Dev Tooling</div>
+
+    <div class="stack-group" style="margin-top:18px">
+      <div class="stack-group-label">Compliance & Governance</div>
       <div class="stack-wrap">
-        <span class="stack-item">Claude Code</span>
-        <span class="stack-item">Cursor</span>
-        <span class="stack-item">Kiro</span>
-        <span class="stack-item">Vim</span>
-        <span class="stack-item">tmux</span>
+        <span class="stack-item">LGPD</span>
+        <span class="stack-item">KYC Architecture</span>
+        <span class="stack-item">Drift Detection</span>
+        <span class="stack-item">Decision Logging</span>
+        <span class="stack-item">Evaluation Loops</span>
+        <span class="stack-item">Audit Trails</span>
       </div>
     </div>
   </section>
 
-  <section class="fade d6">
+  <section class="fade d7">
     <div class="section-label">// Education</div>
     <div class="edu-list">
       <div class="edu-item">
@@ -457,13 +507,13 @@
         <div>
           <div class="edu-name">B.Tech in Systems Analysis & Development</div>
           <div class="edu-inst">São Paulo State College of Technology (FATEC-SP)</div>
-          <div class="edu-inst" style="margin-top:6px; line-height:1.6;">Discrete Math · Calculus · Applied Statistics · Computer Architecture · Algorithms & Programming Logic · Software Engineering</div>
+          <div class="edu-courses">Discrete Mathematics · Calculus · Applied Statistics · Computer Architecture · Algorithms & Data Structures · Software Engineering</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="fade d6" style="border-bottom:none">
+  <section class="fade d8" style="border-bottom:none">
     <div class="section-label">// Contact</div>
     <div class="contact-row">
       <a class="contact-link" href="https://github.com/lucianareynaud" target="_blank">github</a>
@@ -475,7 +525,7 @@
     </div>
   </section>
 
-  <footer class="fade d7">
+  <footer class="fade d8">
   </footer>
 
 </div>
