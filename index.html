@@ -332,7 +332,7 @@
 
   <div class="bio-section fade d2">
     <p class="bio">
-      I work in the hardest layer of enterprise AI adoption: turning LLM systems into production infrastructure that can be controlled, observed, and justified economically. I own the stack from deployment architecture to telemetry, model routing, and cost attribution, with <em>cost, reliability, compliance, and auditability treated as engineering constraints from the start.</em> I am most useful when AI stops being a demo and starts becoming budget, exposure, and infrastructure.
+      I design AI systems at the point where prototypes become infrastructure: when model-driven workflows need to be observable, economically justified, operationally reliable, and safe to scale. My work sits at the intersection of <em>serving architecture, model routing, telemetry, cost attribution, and governance</em> — with cost, reliability, compliance, and auditability treated as engineering constraints from the start. I am most useful when the problem is no longer "can we use AI?" but "can we operate it repeatedly, explain its behavior, and make its economics hold under real usage?"
     </p>
   </div>
 
@@ -344,16 +344,16 @@
         <div class="hl-desc">Cost reduction through operating-model redesign and model routing — projected spend reduced from roughly $210 to $4.20/month, with 3.5% budget utilization and documented headroom for source expansion.</div>
       </div>
       <div class="hl-item">
-        <div class="hl-metric">99.5%</div>
-        <div class="hl-desc">Uptime on self-operated LLM pipeline processing 150–300 articles per run, twice daily, with per-source structured logging and health endpoints.</div>
+        <div class="hl-metric"><em>Hybrid ranking</em></div>
+        <div class="hl-desc">Built an auditable relevance classifier combining embeddings, kNN retrieval, and LLM scoring on top of a 280-example labeled reference set — producing rankings that are inspectable, correctable, and improvable without retraining or fine-tuning.</div>
       </div>
       <div class="hl-item">
         <div class="hl-metric">1.07M</div>
         <div class="hl-desc">Users reached in a single WABA broadcast for Itaú at Blip, generating approximately R$2.3M in closed-deal revenue under regulated operating constraints.</div>
       </div>
       <div class="hl-item">
-        <div class="hl-metric"><em>Evaluation-driven</em></div>
-        <div class="hl-desc">Production monitoring loop anchored in labeled baselines, confidence degradation, fallback behavior, and targeted correction rather than intuition-led deployment.</div>
+        <div class="hl-metric"><em>Cost model</em></div>
+        <div class="hl-desc">$0.14/day baseline documented, 96.5% budget headroom quantified, 6× source expansion modeled — translating architecture into executive financial decision.</div>
       </div>
     </div>
   </section>
@@ -367,7 +367,7 @@
       </div>
       <div class="focus-item">
         <div class="focus-name">Observability & Telemetry</div>
-        <div class="focus-desc">OpenTelemetry instrumentation, structured logging, tracing, and operational visibility for model-driven systems in production.</div>
+        <div class="focus-desc">Structured logging, per-source instrumentation, tracing, and operational visibility for model-driven systems in production — with OpenTelemetry as the target baseline.</div>
       </div>
       <div class="focus-item">
         <div class="focus-name">Production Reliability</div>
@@ -390,9 +390,10 @@
           <div class="exp-role">AI Systems Engineer</div>
           <div class="exp-company">MakeOne Lab</div>
           <ul class="exp-bullets">
-            <li>Own the lab’s LLM application stack across deployment, observability, and production operating decisions, while designing <strong>OpenTelemetry instrumentation and FinOps cost attribution</strong> as the telemetry baseline for model-driven systems.</li>
-            <li><strong>RondaPress — production economics architecture:</strong> Built a 52-source newsroom intelligence platform with hybrid kNN plus LLM ranking. The decisive economic move was not model selection but operating-model redesign: replacing per-employee, on-demand generation with two shared daily deliveries, morning and afternoon. This preserved editorial utility while eliminating the redundancy that made cost scale chaotically. Within that architecture, implemented model routing with 99% of classification traffic on GPT-4o-mini and GPT-4o reserved for final pitch generation, achieving <strong>3.5% budget utilization</strong> and reducing projected monthly spend from roughly <strong>$210 to $4.20</strong>, with headroom for source expansion.</li>
-            <li><strong>Production monitoring:</strong> Maintained an evaluation-driven monitoring loop using labeled baselines, confidence behavior, fallback patterns, and structured logs to detect drift and apply targeted prompt or routing corrections.</li>
+            <li>Built production observability layer for the lab's LLM stack: <strong>per-source structured logging across 52 ingestion endpoints</strong>, per-execution ranker run logs with classification tracing, health endpoints, and cost attribution at the token and model level — establishing the instrumentation baseline for <em>OpenTelemetry-aligned observability</em>.</li>
+            <li><strong>RondaPress — architecture and product intelligence:</strong> Architected a production newsroom intelligence system monitoring <strong>52 sources</strong> and processing <strong>150–300 articles per day</strong>, ranked through a hybrid <strong>kNN + LLM pipeline</strong> anchored in a <strong>280-example labeled dataset</strong>. Built to be auditable: each ranking decision is traceable to its nearest labeled neighbors, enabling editorial correction without retraining.</li>
+            <li><strong>RondaPress — serving model and economics:</strong> The decisive systems decision was replacing per-user on-demand inference with <strong>centralized scheduled processing plus instant dashboard access</strong>, eliminating redundant inference, rate-limit bottlenecks, and cost unpredictability. Implemented model routing with <strong>99% of classification traffic on GPT-4o-mini</strong>, reducing projected monthly spend from roughly <strong>$210 to $4.20</strong> and maintaining <strong>3.5% budget utilization</strong> with clear headroom for expansion.</li>
+            <li><strong>RondaPress — operational visibility:</strong> Built health endpoints, ranked JSON exports, scraper logs, and per-source execution visibility — making the system <strong>debuggable, auditable, and economically predictable</strong> rather than prompt-driven and opaque.</li>
             <li><strong>OneStart Sales Intelligence:</strong> Built an end-to-end pipeline for transcription, structured extraction, stakeholder and pain-point mapping, enrichment from LinkedIn and company websites, and automated strategic sales report generation. Implemented FastAPI backend, Postgres storage, and dual deployment across Docker and serverless surfaces.</li>
             <li>Contributed to Fraport airport intelligence on Databricks, supporting real-time dashboards for passenger presence and connectivity behavior across Fortaleza and Porto Alegre.</li>
           </ul>
@@ -406,9 +407,7 @@
           <div class="exp-company">Scalar School · Human Rights Foundation Grant</div>
           <ul class="exp-bullets">
             <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead, designing the full program architecture, curriculum, and technical content for distributed systems and open financial infrastructure.</li>
-            <li>Authored <strong>"Bitcoin Technology: Foundations and Career Paths"</strong>, a full-length technical reference covering cryptographic primitives, Bitcoin architecture, consensus behavior, Lightning Network foundations, and Bitcoin Core RPC.</li>
-            <li>Translated <strong>"Mastering the Lightning Network"</strong> into Portuguese, expanding access to protocol-level payment infrastructure knowledge for Brazilian developers.</li>
-            <li>Scaled the initiative to <strong>150+ developers</strong>, established university chapters, and organized technical community formation around protocol-level systems reasoning.</li>
+            <li>Scaled to <strong>150+ developers</strong> across university chapters, delivering protocol-level technical education and establishing structured community formation around systems reasoning.</li>
           </ul>
         </div>
       </div>
