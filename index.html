@@ -33,7 +33,7 @@
   .fade { opacity: 0; animation: appear 0.7s ease forwards; }
   .d1{animation-delay:.08s} .d2{animation-delay:.18s} .d3{animation-delay:.28s}
   .d4{animation-delay:.38s} .d5{animation-delay:.48s} .d6{animation-delay:.58s}
-  .d7{animation-delay:.68s} .d8{animation-delay:.78s}
+  .d7{animation-delay:.68s} .d8{animation-delay:.78s} .d9{animation-delay:.88s}
   @keyframes appear {
     from { opacity:0; transform:translateY(10px); }
     to   { opacity:1; transform:translateY(0); }
@@ -253,6 +253,26 @@
   .edu-name { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
   .edu-inst { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); }
   .edu-courses { font-size: 12px; color: var(--faint); margin-top: 6px; line-height: 1.6; }
+
+  /* Certifications / Credly badges */
+  .cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .cert-badge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Tame the Credly iframe dimensions */
+  .cert-badge-wrap div[data-iframe-width] {
+    line-height: 0;
+  }
 
   .contact-row {
     display: flex;
@@ -512,7 +532,34 @@
     </div>
   </section>
 
-  <section class="fade d8" style="border-bottom:none">
+  <section class="fade d8">
+    <div class="section-label">// Certifications</div>
+    <div class="cert-grid">
+
+      <!-- Badge 1 — copy this block for additional badges -->
+      <div class="cert-badge-wrap">
+        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="11398b2b-ad3e-47f0-a25d-31dca1f38c6b" data-share-badge-host="https://www.credly.com"></div>
+        <noscript>
+          <a href="https://www.credly.com/badges/11398b2b-ad3e-47f0-a25d-31dca1f38c6b" target="_blank" rel="noopener" class="contact-link">View credential on Credly</a>
+        </noscript>
+      </div>
+      <!-- /Badge 1 -->
+
+      <!--
+        To add more badges, duplicate the block above and change
+        data-share-badge-id to the new badge's ID. Example:
+
+        <div class="cert-badge-wrap">
+          <div data-iframe-width="150" data-iframe-height="270"
+               data-share-badge-id="YOUR-NEW-BADGE-ID-HERE"
+               data-share-badge-host="https://www.credly.com"></div>
+        </div>
+      -->
+
+    </div>
+  </section>
+
+  <section class="fade d9" style="border-bottom:none">
     <div class="section-label">// Contact</div>
     <div class="contact-row">
       <a class="contact-link" href="https://github.com/lucianareynaud" target="_blank">github</a>
@@ -524,9 +571,12 @@
     </div>
   </section>
 
-  <footer class="fade d8">
+  <footer class="fade d9">
   </footer>
 
 </div>
+
+<!-- Credly embed script — loaded once, handles all badges on the page -->
+<script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
 </body>
 </html>
