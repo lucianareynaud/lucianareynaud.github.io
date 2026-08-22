@@ -3,20 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luciana Reynaud Ferreira — AI Production Systems Engineer</title>
+<title>LLM Cost Attribution Kit — per-user AI spend across Claude, OpenAI, Copilot & Cursor | Prumo</title>
+<meta name="description" content="Split every AI invoice per user and per team, reconcile it to the cent, and report CPUW — cost per unit of work. A validated spreadsheet kit with a 33-check data quality battery. By Prumo.">
+<link rel="canonical" href="https://lucianareynaud.github.io/prumo/">
+<meta property="og:title" content="LLM Cost Attribution Kit — Prumo">
+<meta property="og:description" content="Per-user, multi-vendor AI spend attribution in one validated spreadsheet. Reconciles to the cent. 33 automated checks.">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://lucianareynaud.github.io/prumo/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "LLM Cost Attribution Kit",
+      "brand": { "@type": "Brand", "name": "Prumo" },
+      "description": "Per-user, multi-vendor AI spend attribution spreadsheet with a 33-check data quality battery and an 8-page implementation playbook. Covers seat-based, usage-based, and hybrid billing (Claude, OpenAI API, GitHub Copilot, Cursor).",
+      "offers": {
+        "@type": "Offer",
+        "price": "79",
+        "priceCurrency": "USD",
+        "url": "https://prumo.gumroad.com/l/llm-cost-attribution-kit",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "CPUW (Cost Per Unit of Work)",
+      "description": "CPUW is a metric that expresses AI spend as the cost of one completed unit of business work — a resolved ticket, a merged pull request, a delivered report — rather than raw tokens or invoice totals. It connects LLM billing data to business output so AI cost becomes comparable, budgetable, and attributable per team.",
+      "inDefinedTermSet": "https://lucianareynaud.github.io/prumo/#cpuw"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is CPUW?",
+          "acceptedAnswer": { "@type": "Answer", "text": "CPUW (Cost Per Unit of Work) expresses AI spend as the cost of one completed unit of business output — a resolved ticket, a merged PR, a delivered report — instead of raw tokens or invoice totals. Formula: team AI cost divided by units of work the team delivered in the same period." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the kit work in Google Sheets?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Import is verified: all formulas, dropdowns, and conditional formatting survive. One documented caveat: Sheets drops formula-cell protection; the README explains how to re-protect ranges in two clicks." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does it handle hybrid billing like GitHub Copilot?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A hybrid vendor is modeled as two cost components: a seat-based line allocated by roster and a usage-based line allocated by credits consumed. This matches the AI Credits model GitHub Copilot moved to in June 2026." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why never allocate by raw tokens?",
+          "acceptedAnswer": { "@type": "Answer", "text": "When users hit models with different prices, token counts misattribute cost even though totals still reconcile. The allocation basis must be billed cost or a uniformly priced vendor unit; the playbook covers the correct basis per vendor." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this suitable for official financial reporting?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The kit produces management estimates from declared premises — invoices, rosters, unit counts — clearly labeled as such. Premises need owner validation before official use." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
 
   :root {
     --bg: #f4f1eb;
-    --ink: #18160f;
+    --paper: #F6F1EA;
+    --ink: #26211E;
     --muted: #7a7568;
     --faint: #c8c3b8;
     --rule: #ddd8ce;
-    --accent: #6E1F3A;
-    --accent-mid: #8F2B4F;
-    --accent-light: #F2E5E9;
-    --warm-white: #faf8f4;
+    --wine: #6E1F3A;
+    --wine-mid: #8F2B4F;
+    --wine-tint: #F2E5E9;
+    --graphite: #6E6E6E;
+    --ok: #2f5c47;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,290 +91,239 @@
     color: var(--ink);
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 300;
-    min-height: 100vh;
+    line-height: 1.6;
   }
 
   .fade { opacity: 0; animation: appear 0.7s ease forwards; }
-  .d1{animation-delay:.08s} .d2{animation-delay:.18s} .d3{animation-delay:.28s}
-  .d4{animation-delay:.38s} .d5{animation-delay:.48s} .d6{animation-delay:.58s}
-  .d7{animation-delay:.68s} .d8{animation-delay:.78s}
+  .d1{animation-delay:.08s} .d2{animation-delay:.2s} .d3{animation-delay:.32s}
+  .d4{animation-delay:.44s} .d5{animation-delay:.56s}
   @keyframes appear {
     from { opacity:0; transform:translateY(10px); }
     to   { opacity:1; transform:translateY(0); }
   }
 
-  .wrap {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 36px;
-  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 36px; }
 
   header {
-    padding-top: 72px;
-    padding-bottom: 52px;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 32px;
+    padding: 34px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
-
-  .name {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: clamp(42px, 8.5vw, 72px);
-    line-height: 0.93;
-    letter-spacing: -1.5px;
-  }
-  .name em { font-style: italic; color: var(--accent-mid); }
-
-  .title-block { text-align: right; }
-
-  .role {
+  .wordmark {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 2.5px;
+    font-size: 13px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--muted);
-    line-height: 2.1;
+    color: var(--wine);
+    font-weight: 500;
+    text-decoration: none;
   }
-
-  .location {
+  .byline-link {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    color: var(--faint);
-    margin-top: 8px;
     letter-spacing: 1px;
+    color: var(--muted);
+    text-decoration: none;
   }
+  .byline-link:hover { color: var(--wine-mid); }
 
-  .bio-section {
-    padding: 52px 0 48px;
+  .hero {
+    position: relative;
+    padding: 84px 0 56px 44px;
     border-bottom: 1px solid var(--rule);
   }
+  .plumb {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 38px;
+    width: 1px;
+    background: var(--wine);
+    transform-origin: top center;
+    animation: settle 2.4s ease-out forwards;
+  }
+  .plumb::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    width: 11px;
+    height: 14px;
+    background: var(--wine);
+    transform: translateX(-50%);
+    clip-path: polygon(50% 100%, 0 22%, 50% 0, 100% 22%);
+  }
+  @keyframes settle {
+    0%   { transform: rotate(2.2deg); }
+    35%  { transform: rotate(-1.4deg); }
+    65%  { transform: rotate(0.6deg); }
+    100% { transform: rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade { animation: none; opacity: 1; }
+    .plumb { animation: none; }
+  }
 
-  .bio {
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+    margin-bottom: 18px;
+  }
+  h1 {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    font-size: clamp(16.5px, 2.6vw, 20px);
-    line-height: 1.72;
-    max-width: 660px;
+    font-size: clamp(34px, 6.5vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -1px;
+    max-width: 640px;
   }
-  .bio em { font-style: italic; color: var(--accent-mid); }
+  h1 em { font-style: italic; color: var(--wine-mid); }
+  .dek {
+    margin-top: 22px;
+    font-size: 16.5px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+  }
 
-  section {
-    padding: 48px 0;
+  .cta-row {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .buy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    background: var(--wine);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 28px;
+    transition: background 0.18s;
+  }
+  .buy:hover { background: var(--wine-mid); }
+  .buy:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .cta-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    line-height: 1.9;
+  }
+
+  .ledger {
+    padding: 22px 0;
     border-bottom: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
   }
+  .ledger span strong { color: var(--ink); font-weight: 500; }
+  .ledger .ok { color: var(--ok); font-weight: 500; }
 
+  section { padding: 52px 0; border-bottom: 1px solid var(--rule); }
   .section-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 9.5px;
     letter-spacing: 3.5px;
     text-transform: uppercase;
     color: var(--faint);
-    margin-bottom: 28px;
+    margin-bottom: 26px;
   }
-
-  .highlights {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-  }
-
-  .hl-item {
-    background: var(--bg);
-    padding: 20px 22px;
-    transition: background 0.18s;
-  }
-  .hl-item:hover { background: var(--accent-light); }
-
-  .hl-metric {
+  h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 32px);
+    letter-spacing: -0.4px;
+    margin-bottom: 18px;
   }
-  .hl-metric em { font-style: italic; }
+  .prose { font-size: 14.5px; color: var(--ink); max-width: 640px; line-height: 1.75; }
+  .prose + .prose { margin-top: 14px; }
+  .prose strong { font-weight: 500; }
 
-  .hl-desc {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    color: var(--muted);
-    line-height: 1.7;
-    letter-spacing: 0.2px;
-  }
-
-  .focus-grid {
+  .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1px;
     background: var(--rule);
+    margin-top: 8px;
   }
-
-  .focus-item {
-    background: var(--bg);
-    padding: 22px 24px;
-    transition: background 0.18s;
-  }
-  .focus-item:hover { background: var(--accent-light); }
-
-  .focus-name {
+  .card { background: var(--bg); padding: 22px; }
+  .card-name {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10.5px;
     font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 8px;
     letter-spacing: 0.8px;
     text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 10px;
   }
+  .card p { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
 
-  .focus-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
-
-  .exp-list { display: flex; flex-direction: column; gap: 36px; }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 28px;
-  }
-
-  .exp-meta {
+  .formula {
+    margin: 22px 0;
+    padding: 18px 22px;
+    background: var(--wine-tint);
+    border-left: 2px solid var(--wine);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    color: var(--muted);
-    line-height: 1.9;
-    padding-top: 3px;
-    letter-spacing: 0.3px;
-  }
-
-  .exp-role { font-size: 14.5px; font-weight: 500; margin-bottom: 3px; letter-spacing: -0.2px; }
-
-  .exp-company {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    color: var(--accent-mid);
-    margin-bottom: 14px;
-    letter-spacing: 0.6px;
-  }
-
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .exp-bullets li {
     font-size: 12.5px;
-    color: var(--muted);
-    line-height: 1.7;
-    padding-left: 16px;
-    position: relative;
-  }
-  .exp-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--faint);
-    font-size: 10px;
-    top: 2px;
-  }
-  .exp-bullets li strong { color: var(--ink); font-weight: 500; }
-  .exp-bullets li em { font-style: italic; color: var(--accent); }
-
-  .stack-group { margin-bottom: 18px; }
-  .stack-group:last-child { margin-bottom: 0; }
-
-  .stack-group-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--faint);
-    margin-bottom: 11px;
+    color: var(--wine);
+    max-width: 640px;
   }
 
-  .stack-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
-
-  .stack-item {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    padding: 5px 13px;
-    border: 1px solid var(--rule);
-    color: var(--muted);
-    transition: all 0.15s;
-    cursor: default;
-  }
-  .stack-item:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-  .stack-item.primary { border-color: var(--accent-mid); color: var(--accent); background: var(--accent-light); }
-
-  .edu-list { display: flex; flex-direction: column; gap: 18px; }
-
-  .edu-item {
+  .steps { list-style: none; max-width: 640px; }
+  .steps li {
     display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 28px;
-  }
-  .edu-year { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: var(--muted); padding-top: 3px; }
-  .edu-name { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
-  .edu-inst { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: var(--muted); }
-  .edu-courses { font-size: 12px; color: var(--faint); margin-top: 6px; line-height: 1.6; }
-
-  .contact-row {
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .contact-link {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11.5px;
+    grid-template-columns: 34px 1fr;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 13.5px;
     color: var(--muted);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.18s;
+    line-height: 1.65;
   }
-  .contact-link:hover { color: var(--accent); }
-  .contact-link::before { content: '↗'; font-size: 9px; }
-
-  .avail-badge {
-    margin-left: auto;
+  .steps li:last-child { border-bottom: none; }
+  .step-n {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-light);
-    padding: 7px 15px;
-    border: 1px solid var(--accent-mid);
-    display: flex;
-    align-items: center;
-    gap: 9px;
+    font-size: 11px;
+    color: var(--wine-mid);
+    padding-top: 2px;
   }
+  .steps strong { color: var(--ink); font-weight: 500; }
 
-  .avail-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2.2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.25; }
-  }
+  .faq-item { max-width: 660px; padding: 16px 0; border-bottom: 1px dashed var(--rule); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .faq-a { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-  footer { padding: 28px 0 60px; }
-  .footer-text { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faint); }
+  .final-cta { text-align: left; }
+
+  footer { padding: 30px 0 60px; }
+  .footer-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--faint);
+    line-height: 2;
+  }
+  .footer-text a { color: var(--muted); text-decoration: none; }
+  .footer-text a:hover { color: var(--wine-mid); }
 
   @media (max-width: 620px) {
-    header { grid-template-columns: 1fr; }
-    .title-block { text-align: left; }
-    .focus-grid, .highlights { grid-template-columns: 1fr; }
-    .exp-item, .edu-item { grid-template-columns: 1fr; gap: 5px; }
-    .contact-row { flex-direction: column; align-items: flex-start; }
-    .avail-badge { margin-left: 0; }
     .wrap { padding: 0 20px; }
+    .hero { padding-left: 30px; }
+    .plumb { left: 4px; }
+    .cards { grid-template-columns: 1fr; }
+    .ledger { gap: 12px; flex-direction: column; }
   }
 </style>
 </head>
@@ -318,216 +331,116 @@
 <div class="wrap">
 
   <header class="fade d1">
-    <div>
-      <div class="name">Luciana<br>Reynaud <em>Ferreira</em></div>
-    </div>
-    <div class="title-block">
-      <div class="role">
-        LLM Production Systems Engineer<br>
-        Observability · FinOps · Governance
-      </div>
-      <div class="location">Brazil · Remote</div>
-    </div>
+    <a class="wordmark" href="https://lucianareynaud.github.io/prumo/">Prumo</a>
+    <a class="byline-link" href="https://lucianareynaud.github.io" target="_blank" rel="noopener">by Luciana Reynaud ↗</a>
   </header>
 
-  <div class="bio-section fade d2">
-    <p class="bio">
-      I design AI systems at the point where prototypes become infrastructure: when model-driven workflows need to be observable, economically justified, operationally reliable, and safe to scale. My work sits at the intersection of <em>serving architecture, model routing, telemetry, cost attribution, and governance</em> — with cost, reliability, compliance, and auditability treated as engineering constraints from the start. I am most useful when the problem is no longer "can we use AI?" but "can we operate it repeatedly, explain its behavior, and make its economics hold under real usage?"
-    </p>
+  <div class="hero fade d1">
+    <div class="plumb" aria-hidden="true"></div>
+    <div class="eyebrow">LLM FinOps · spreadsheet kit</div>
+    <h1>Every AI invoice, attributed to the <em>person</em> who spent it.</h1>
+    <p class="dek">The LLM Cost Attribution Kit splits your Claude, OpenAI, Copilot and Cursor invoices per user and per team, reconciles the totals to the cent, and reports cost per unit of work — in one validated spreadsheet. No platform. No scripts. No API keys.</p>
+    <div class="cta-row">
+      <a class="buy" href="https://prumo.gumroad.com/l/llm-cost-attribution-kit">Buy the kit — $79</a>
+      <div class="cta-note">Instant download · xlsx + 8-page playbook<br>Excel · LibreOffice · Google Sheets</div>
+    </div>
   </div>
 
+  <div class="ledger fade d2" aria-label="Reconciliation example">
+    <span>invoiced <strong>$8,460.00</strong></span>
+    <span>attributed <strong>$8,460.00</strong></span>
+    <span>difference <strong>$0.00</strong></span>
+    <span class="ok">33 checks · status OK</span>
+  </div>
+
+  <section class="fade d2">
+    <div class="section-label">// The problem</div>
+    <h2>Your AI invoices arrive as monoliths.</h2>
+    <p class="prose">One number from Anthropic. One from OpenAI. One from GitHub. One from Cursor. Finance asks the only question finance ever asks — <strong>who is spending this and what do we get back?</strong> — and nobody can answer, because vendors bill at the account level, every billing model is different, and two of them changed their pricing mechanics this year alone.</p>
+    <p class="prose">The result is familiar: AI budget grows quarter over quarter, nobody owns it, and the first cost review threatens every tool indiscriminately — including the ones quietly paying for themselves.</p>
+  </section>
+
   <section class="fade d3">
-    <div class="section-label">// Selected Impact</div>
-    <div class="highlights">
-      <div class="hl-item">
-        <div class="hl-metric">50×</div>
-        <div class="hl-desc">Cost reduction through operating-model redesign and model routing — projected spend reduced from roughly $210 to $4.20/month, with documented headroom for source expansion.</div>
+    <div class="section-label">// What's inside</div>
+    <h2>A spreadsheet that refuses to look trustworthy until it is.</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-name">The workbook</div>
+        <p>8 tabs, fully formula-driven, preallocated for 200 users × 20 teams × 8 cost components. Seat, usage, and hybrid billing. A 33-check data quality battery gates every number behind an OK status.</p>
       </div>
-      <div class="hl-item">
-        <div class="hl-metric"><em>Hybrid ranking</em></div>
-        <div class="hl-desc">Built an auditable relevance classifier combining embeddings, kNN retrieval, and LLM scoring on top of a 280-example labeled reference set — producing rankings that are inspectable, correctable, and improvable without retraining or fine-tuning.</div>
+      <div class="card">
+        <div class="card-name">The playbook</div>
+        <p>8 pages: the three attribution models, the allocation-basis rule that keeps your split economically valid, a vendor billing guide current to August 2026, a 30-day rollout plan, and a copy-paste email to Finance.</p>
       </div>
-      <div class="hl-item">
-        <div class="hl-metric">1.07M</div>
-        <div class="hl-desc">Users reached in a single WABA broadcast for Recovery at Blip, generating approximately R$2.3M in closed-deal revenue under regulated operating constraints.</div>
-      </div>
-      <div class="hl-item">
-        <div class="hl-metric"><em>Cost model</em></div>
-        <div class="hl-desc">$0.14/day baseline documented, wide budget headroom quantified, 6× source expansion modeled — translating architecture into executive financial decision.</div>
+      <div class="card">
+        <div class="card-name">Markdown copy</div>
+        <p>The full playbook in plain text — for your internal wiki, your editor, or the part of your team that reads documentation in vim.</p>
       </div>
     </div>
+  </section>
+
+  <section class="fade d3">
+    <div class="section-label">// How it works</div>
+    <h2>One formula. Three billing models. Zero mystery.</h2>
+    <div class="formula">user's allocation basis ÷ component's total basis × component invoice</div>
+    <ol class="steps">
+      <li><span class="step-n">01</span><span><strong>Classify each invoice line</strong> as a cost component: seat-based (allocated by roster), usage-based (allocated by billed cost or uniformly priced credits — never raw tokens across mixed model prices), or hybrid — two components, the model GitHub Copilot moved to in June 2026.</span></li>
+      <li><span class="step-n">02</span><span><strong>Fill three input tabs</strong> — components, teams, users — from data you already have: invoices, rosters, and the vendor's own usage export. The Checks tab flags anything inconsistent before it can mislead anyone.</span></li>
+      <li><span class="step-n">03</span><span><strong>Read the results:</strong> per-user attribution, team rollup, and CPUW per team — reconciled against invoice totals to the cent, screenshot-ready for your first monthly report.</span></li>
+    </ol>
+  </section>
+
+  <section class="fade d4" id="cpuw">
+    <div class="section-label">// The metric</div>
+    <h2>What is CPUW?</h2>
+    <p class="prose"><strong>CPUW (Cost Per Unit of Work)</strong> is a metric that expresses AI spend as the cost of one completed unit of business work — a resolved ticket, a merged pull request, a delivered report — rather than raw tokens or invoice totals. It connects LLM billing data to business output, so AI cost becomes comparable, budgetable, and attributable per team.</p>
+    <div class="formula">CPUW = team AI cost ÷ units of work delivered in the same period</div>
+    <p class="prose">Why it works: tokens are not comparable across teams or months; units of work are. <strong>"$0.83 per resolved ticket" survives a budget meeting. "41 million tokens" does not.</strong> CPUW is comparable within a team over time and, cautiously, across teams that declare the exact same unit — which is why the kit computes it per team only, and shows N/A rather than zero when a team has cost but no declared output.</p>
+    <p class="prose">What CPUW is not: an ROI claim. It states what a unit costs in AI spend; it does not prove AI caused the output. That honesty is deliberate — credibility, once spent, doesn't come back.</p>
   </section>
 
   <section class="fade d4">
-    <div class="section-label">// Focus</div>
-    <div class="focus-grid">
-      <div class="focus-item">
-        <div class="focus-name">LLM FinOps & Cost Attribution</div>
-        <div class="focus-desc">Token budget design, model routing, batch vs. on-demand cost analysis, and spend visibility across production AI systems.</div>
-      </div>
-      <div class="focus-item">
-        <div class="focus-name">Observability & Telemetry</div>
-        <div class="focus-desc">Structured logging, per-source instrumentation, tracing, and operational visibility for model-driven systems in production — with OpenTelemetry as the target baseline.</div>
-      </div>
-      <div class="focus-item">
-        <div class="focus-name">Production Reliability</div>
-        <div class="focus-desc">Deployment architecture, evaluation loops, health surfaces, and monitoring workflows that detect and correct behavioral drift.</div>
-      </div>
-      <div class="focus-item">
-        <div class="focus-name">AI Governance & Compliance</div>
-        <div class="focus-desc">Risk-aware system design, decision logging, LGPD-aware architecture, and auditability for regulated or high-consequence environments.</div>
-      </div>
+    <div class="section-label">// Questions</div>
+    <h2>Asked before buying.</h2>
+    <div class="faq-item">
+      <div class="faq-q">Does it work in Google Sheets?</div>
+      <div class="faq-a">Yes — import verified: all formulas, dropdowns, and conditional formatting survive. One documented caveat: Sheets drops formula-cell protection; the README explains how to re-protect ranges in two clicks.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">My vendor isn't on the list.</div>
+      <div class="faq-a">Component names are free text and headers propagate automatically. Any vendor fits one of the three billing models; the playbook shows how to classify it with a single question: does this invoice line change when usage changes?</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">More than 200 users?</div>
+      <div class="faq-a">That's the designed capacity. Beyond it you've outgrown spreadsheets — and the method (components, allocation basis, checks, reconciliation) transfers unchanged to a pipeline. The method is the part you're buying.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this financial reporting?</div>
+      <div class="faq-a">No. The kit produces management estimates from declared premises — invoices, rosters, unit counts — clearly labeled as such throughout. Validate premises with their owners before official use.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Support and updates?</div>
+      <div class="faq-a">Self-service product, sold as-is, with honest scope stated in the documentation. Defect reports are welcome and fixed; buyer-specific modeling support is out of scope by design — that's what keeps it $79.</div>
     </div>
   </section>
 
-  <section class="fade d5">
-    <div class="section-label">// Experience</div>
-    <div class="exp-list">
-
-      <div class="exp-item">
-        <div class="exp-meta">Feb 2025 – Present<br>Remote · Brazil</div>
-        <div>
-          <div class="exp-role">AI Systems Engineer</div>
-          <div class="exp-company">MakeOne Lab</div>
-          <ul class="exp-bullets">
-            <li>Built production observability layer for the lab's LLM stack: <strong>per-source structured logging across 52 ingestion endpoints</strong>, per-execution ranker run logs with classification tracing, health endpoints, and cost attribution at the token and model level — establishing the instrumentation baseline for <em>future OpenTelemetry integration</em>.</li>
-            <li><strong>Journalism intelligence platform — architecture:</strong> Auditable relevance ranking across <strong>52 sources and 150–300 articles/day</strong> — each decision traceable to its nearest labeled neighbors, enabling editorial correction without retraining. Built on a hybrid <strong>kNN + LLM pipeline</strong> anchored in a <strong>280-example labeled dataset</strong>.</li>
-            <li><strong>Journalism intelligence platform — serving model and economics:</strong> Reduced projected monthly AI spend from roughly <strong>$210 to $4.20</strong> — a 50× reduction — by replacing per-user on-demand inference with centralized scheduled processing plus instant dashboard access. Implemented model routing with <strong>99% of classification traffic on the most cost-efficient model tier</strong>, maintaining wide headroom for expansion.</li>
-            <li><strong>Journalism intelligence platform — operational visibility:</strong> System is <strong>debuggable, auditable, and economically predictable</strong> rather than prompt-driven and opaque — health endpoints, ranked JSON exports, scraper logs, and per-source execution visibility built in from the start.</li>
-            <li><strong>Sales intelligence pipeline:</strong> Built an end-to-end pipeline for transcription, structured extraction, stakeholder and pain-point mapping, enrichment from LinkedIn and company websites, and automated strategic sales report generation. Implemented FastAPI backend, Postgres storage, and dual deployment across Docker and serverless surfaces.</li>
-            <li>Contributed to airport intelligence dashboards on Databricks, supporting real-time analytics for passenger presence and connectivity behavior across multiple airport sites.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-meta">Feb 2024 – Feb 2025<br>Ribeirão Preto · Brazil</div>
-        <div>
-          <div class="exp-role">Technical Lead</div>
-          <div class="exp-company">Scalar School · Human Rights Foundation Grant</div>
-          <ul class="exp-bullets">
-            <li>Secured and managed <strong>USD 25,000 from the Human Rights Foundation</strong> as sole technical lead, designing the full program architecture, curriculum, and technical content for distributed systems and open financial infrastructure.</li>
-            <li>Scaled to <strong>150+ developers</strong> across university chapters, delivering protocol-level technical education and establishing structured community formation around systems reasoning.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-meta">Jun 2023 – Mar 2024<br>Remote · Brazil</div>
-        <div>
-          <div class="exp-role">AI Systems Engineer</div>
-          <div class="exp-company">Voz AI · independent contractor</div>
-          <ul class="exp-bullets">
-            <li><strong>Embedded LGPD, Central Bank regulations, and KYC requirements as design constraints</strong> from the first flow, treating compliance as architecture rather than review-layer overhead.</li>
-            <li>Designed and specified the conversational AI system for <strong>BMG Bank</strong>: 20 modular Dialogflow CX flows with full error handling, unsupported-format exits, session parameter architecture, and behavioral event tracking defined alongside the data engineering layer.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-meta">Nov 2021 – Jun 2023<br>Remote · Brazil</div>
-        <div>
-          <div class="exp-role">AI Systems Engineer</div>
-          <div class="exp-company">Blip</div>
-          <ul class="exp-bullets">
-            <li>Owned production customer-facing AI systems for <strong>Itaú Personalité, Itaú Credimob, Bradesco Alelo, Recovery, and HDI Seguros</strong> across regulated financial and insurance environments.</li>
-            <li>Designed an anti-fraud WABA broadcast to <strong>1,077,000 users</strong> for Recovery, generating approximately <strong>R$2.3M in closed-deal revenue</strong> within LGPD and WhatsApp Business API constraints.</li>
-            <li>Ran iterative model-quality cycles from raw production logs, identifying fallback concentration, low-confidence behavior, and audience-specific vocabulary to inform retraining and system refinement.</li>
-            <li>Designed in-bot NPS, CSAT, and CES measurement flows on WhatsApp and Instagram, instrumenting live systems for continuous quality signal.</li>
-          </ul>
-        </div>
-      </div>
-
+  <section class="fade d5 final-cta" style="border-bottom:none">
+    <div class="section-label">// Get it</div>
+    <h2>One monthly cycle pays for it.</h2>
+    <p class="prose">If you administer seats on two or more AI tools, the first reconciled report answers questions your leadership has been asking for months.</p>
+    <div class="cta-row">
+      <a class="buy" href="https://prumo.gumroad.com/l/llm-cost-attribution-kit">Buy the kit — $79</a>
+      <div class="cta-note">Instant download on Gumroad<br>Fictional example data included — see the format before you fill it</div>
     </div>
   </section>
 
-  <section class="fade d6">
-    <div class="section-label">// Stack</div>
-
-    <div class="stack-group">
-      <div class="stack-group-label">Core Specialty</div>
-      <div class="stack-wrap">
-        <span class="stack-item primary">LLM FinOps</span>
-        <span class="stack-item primary">Cost Attribution</span>
-        <span class="stack-item primary">Model Routing</span>
-        <span class="stack-item primary">Observability</span>
-        <span class="stack-item primary">OpenTelemetry</span>
-        <span class="stack-item primary">AI Governance</span>
-      </div>
+  <footer class="fade d5">
+    <div class="footer-text">
+      A Prumo product · precision instruments for AI spend<br>
+      Built by <a href="https://lucianareynaud.github.io" target="_blank" rel="noopener">Luciana Reynaud</a> · © 2026 Prumo
     </div>
-
-    <div class="stack-group" style="margin-top:18px">
-      <div class="stack-group-label">Infrastructure & Production</div>
-      <div class="stack-wrap">
-        <span class="stack-item">Python</span>
-        <span class="stack-item">FastAPI</span>
-        <span class="stack-item">Docker</span>
-        <span class="stack-item">Linux · Ubuntu Server</span>
-        <span class="stack-item">GitHub Actions</span>
-        <span class="stack-item">Cloudflare Tunnels</span>
-        <span class="stack-item">Postgres</span>
-        <span class="stack-item">Databricks</span>
-        <span class="stack-item">Distributed Systems</span>
-      </div>
-    </div>
-
-    <div class="stack-group" style="margin-top:18px">
-      <div class="stack-group-label">AI & ML</div>
-      <div class="stack-wrap">
-        <span class="stack-item">OpenAI API</span>
-        <span class="stack-item">Anthropic API</span>
-        <span class="stack-item">Whisper</span>
-        <span class="stack-item">Hugging Face</span>
-        <span class="stack-item">Vector Search</span>
-        <span class="stack-item">Embeddings</span>
-        <span class="stack-item">RAG Pipelines</span>
-        <span class="stack-item">Pydantic</span>
-      </div>
-    </div>
-
-    <div class="stack-group" style="margin-top:18px">
-      <div class="stack-group-label">Compliance & Governance</div>
-      <div class="stack-wrap">
-        <span class="stack-item">LGPD</span>
-        <span class="stack-item">KYC Architecture</span>
-        <span class="stack-item">Drift Detection</span>
-        <span class="stack-item">Decision Logging</span>
-        <span class="stack-item">Evaluation Loops</span>
-        <span class="stack-item">Audit Trails</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="fade d7">
-    <div class="section-label">// Education</div>
-    <div class="edu-list">
-      <div class="edu-item">
-        <div class="edu-year">2024</div>
-        <div>
-          <div class="edu-name">B.Tech in Systems Analysis & Development</div>
-          <div class="edu-inst">São Paulo State College of Technology (FATEC-SP)</div>
-          <div class="edu-courses">Discrete Mathematics · Calculus · Applied Statistics · Computer Architecture · Algorithms & Data Structures · Software Engineering</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="fade d8" style="border-bottom:none">
-    <div class="section-label">// Contact</div>
-    <div class="contact-row">
-      <a class="contact-link" href="https://github.com/lucianareynaud" target="_blank">github</a>
-      <a class="contact-link" href="https://linkedin.com/in/lucianareynaud" target="_blank">linkedin</a>
-      <div class="avail-badge">
-        <div class="avail-dot"></div>
-        Open to remote
-      </div>
-    </div>
-  </section>
-
-  <footer class="fade d8">
   </footer>
 
 </div>
-
 </body>
 </html>
