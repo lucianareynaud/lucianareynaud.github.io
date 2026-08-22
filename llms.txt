@@ -1,0 +1,13 @@
+# Luciana Reynaud / Prumo
+
+> Portfolio of Luciana Reynaud (LLM production systems, observability, FinOps, governance) and Prumo, maker of precision instruments for AI spend.
+
+## Prumo
+
+- [LLM Cost Attribution Kit](https://lucianareynaud.github.io/prumo/): per-user, multi-vendor AI spend attribution spreadsheet kit. Covers seat, usage and hybrid billing (Claude, OpenAI API, GitHub Copilot, Cursor), with a 33-check data quality battery.
+- [What is CPUW?](https://lucianareynaud.github.io/prumo/#cpuw): canonical definition of CPUW (Cost Per Unit of Work) — AI spend expressed as the cost of one completed unit of business work, computed per team.
+
+## Author
+
+- [Portfolio](https://lucianareynaud.github.io/): background and selected work.
+- [Medium](https://lucianareynaud.medium.com/): articles on LLM observability, cost attribution and governance.
