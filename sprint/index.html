@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sprint de Atribuição de Custo de IA — Prumo</title>
+<meta name="description" content="Em duas semanas, cada fatura de IA da sua empresa atribuída a quem gastou — reconciliada ao centavo. Preço fixo, escopo fechado, sem retainer.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #f4f1eb;
+    --ink: #26211E;
+    --muted: #7a7568;
+    --faint: #c8c3b8;
+    --rule: #ddd8ce;
+    --wine: #6E1F3A;
+    --wine-mid: #8F2B4F;
+    --wine-tint: #F2E5E9;
+    --graphite: #6E6E6E;
+    --ok: #2f5c47;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; line-height: 1.6; }
+  .fade { opacity: 0; animation: appear 0.7s ease forwards; }
+  .d1{animation-delay:.08s} .d2{animation-delay:.2s} .d3{animation-delay:.32s} .d4{animation-delay:.44s}
+  @keyframes appear { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; opacity: 1; } .plumb { animation: none; } }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+  header { padding: 32px 0 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .wordmark { font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 6px; text-transform: uppercase; color: var(--wine); font-weight: 500; text-decoration: none; }
+  .byline-link { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); text-decoration: none; }
+  .byline-link:hover { color: var(--wine-mid); }
+
+  .hero { position: relative; padding: 72px 0 48px 42px; border-bottom: 1px solid var(--rule); }
+  .plumb { position: absolute; left: 8px; top: 0; bottom: 34px; width: 1px; background: var(--wine); transform-origin: top center; animation: settle 2.4s ease-out forwards; }
+  .plumb::after { content: ''; position: absolute; bottom: -13px; left: 50%; width: 10px; height: 13px; background: var(--wine); transform: translateX(-50%); clip-path: polygon(50% 100%, 0 22%, 50% 0, 100% 22%); }
+  @keyframes settle { 0% {transform:rotate(2.2deg);} 35% {transform:rotate(-1.4deg);} 65% {transform:rotate(0.6deg);} 100% {transform:rotate(0deg);} }
+
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--wine-mid); margin-bottom: 16px; }
+  h1 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(30px, 6vw, 46px); line-height: 1.1; letter-spacing: -0.8px; max-width: 620px; }
+  h1 em { font-style: italic; color: var(--wine-mid); }
+  .dek { margin-top: 20px; font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.7; }
+
+  .cta-row { margin-top: 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .buy { font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.6px; background: var(--wine); color: #fff; text-decoration: none; padding: 15px 26px; transition: background 0.18s; }
+  .buy:hover { background: var(--wine-mid); }
+  .cta-note { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; line-height: 1.9; }
+
+  section { padding: 46px 0; border-bottom: 1px solid var(--rule); }
+  .section-label { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--faint); margin-bottom: 22px; }
+  h2 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(22px, 4vw, 30px); letter-spacing: -0.4px; margin-bottom: 16px; }
+  .prose { font-size: 14.5px; max-width: 620px; line-height: 1.75; }
+  .prose + .prose { margin-top: 13px; }
+  .prose strong { font-weight: 500; }
+
+  .deliv { list-style: none; max-width: 640px; }
+  .deliv li { display: grid; grid-template-columns: 30px 1fr; gap: 13px; padding: 13px 0; border-bottom: 1px dashed var(--rule); font-size: 14px; color: var(--muted); line-height: 1.65; }
+  .deliv li:last-child { border-bottom: none; }
+  .deliv .n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--wine-mid); padding-top: 2px; }
+  .deliv strong { color: var(--ink); font-weight: 500; }
+
+  .terms { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); margin-top: 6px; }
+  .term { background: var(--bg); padding: 20px; }
+  .term-k { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--graphite); margin-bottom: 8px; }
+  .term-v { font-size: 14px; }
+  .term-v strong { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--wine); font-weight: 500; }
+
+  .guarantee { margin-top: 22px; padding: 18px 22px; background: var(--wine-tint); border-left: 2px solid var(--wine); font-size: 14px; max-width: 620px; }
+  .guarantee strong { color: var(--wine); font-weight: 500; }
+
+  footer { padding: 28px 0 56px; }
+  .footer-text { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--faint); line-height: 2; }
+  .footer-text a { color: var(--muted); text-decoration: none; }
+  .footer-text a:hover { color: var(--wine-mid); }
+
+  @media (max-width: 620px) {
+    .wrap { padding: 0 20px; }
+    .hero { padding-left: 28px; }
+    .plumb { left: 4px; }
+    .terms { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="fade d1">
+    <a class="wordmark" href="https://lucianareynaud.github.io/prumo/">Prumo</a>
+    <a class="byline-link" href="https://lucianareynaud.github.io" target="_blank" rel="noopener">by Luciana Reynaud ↗</a>
+  </header>
+
+  <div class="hero fade d1">
+    <div class="plumb" aria-hidden="true"></div>
+    <div class="eyebrow">Serviço · implantação em 2 semanas</div>
+    <h1>Sprint de Atribuição de Custo de IA: cada fatura, atribuída a <em>quem</em> gastou.</h1>
+    <p class="dek">Em duas semanas, assíncrono, eu implanto a atribuição de custo de IA nos dados reais da sua empresa — Claude, OpenAI, Copilot, Cursor e equivalentes — reconciliada ao centavo, com a sua equipe capacitada a repetir o ciclo sozinha. Preço fixo. Escopo fechado. Sem retainer.</p>
+    <div class="cta-row">
+      <a class="buy" href="https://wa.me/5516997101555?text=Oi%2C%20Luciana%21%20Vi%20a%20p%C3%A1gina%20do%20Sprint%20de%20Atribui%C3%A7%C3%A3o%20de%20Custo%20de%20IA%20e%20quero%20entender%20como%20funcionaria%20aqui%20na%20empresa.">Conversar no WhatsApp</a>
+      <div class="cta-note">Resposta em horário comercial<br>2 vagas por mês</div>
+    </div>
+  </div>
+
+  <section class="fade d2">
+    <div class="section-label">// O problema</div>
+    <h2>A fatura chega num bloco só.</h2>
+    <p class="prose">Um número da Anthropic. Um da OpenAI. Um do GitHub. Um do Cursor. O financeiro pergunta <strong>quem está gastando e o que a empresa recebe de volta</strong> — e ninguém consegue responder, porque cada vendor cobra num modelo diferente e dois deles mudaram a mecânica de preço só neste ano.</p>
+    <p class="prose">O custo de continuar sem resposta não é este Sprint: é o assento ocioso pago todo mês, o modelo caro usado onde o barato bastava, e a primeira revisão de corte ameaçando as ferramentas que estão se pagando — junto com as que não estão.</p>
+  </section>
+
+  <section class="fade d2">
+    <div class="section-label">// Entrega</div>
+    <h2>O que você recebe. Escopo fechado.</h2>
+    <ol class="deliv">
+      <li><span class="n">01</span><span><strong>Motor de atribuição implantado nos seus dados reais</strong> — faturas, assentos e exports de uso, nos três modelos de billing (assento, consumo, híbrido), com bateria de 33 verificações automáticas de qualidade de dado.</span></li>
+      <li><span class="n">02</span><span><strong>Primeiro relatório mensal fechado e reconciliado ao centavo</strong> — custo por pessoa, por time, e custo por unidade de trabalho (CPUW) por time, com residual não mapeado declarado, nunca escondido.</span></li>
+      <li><span class="n">03</span><span><strong>Leitura executiva</strong> (1 call, 50 min) — o que os números dizem, as três maiores alavancas, e o roteiro do ciclo mensal para a sua equipe rodar sozinha em ~1h/mês.</span></li>
+      <li><span class="n">04</span><span><strong>Transferência completa</strong> — a planilha-motor é sua, documentada, com playbook de operação. Sem dependência, sem mensalidade, sem retainer. Começa, entrega, termina.</span></li>
+    </ol>
+  </section>
+
+  <section class="fade d3">
+    <div class="section-label">// Formato</div>
+    <h2>Duas semanas. Um preço. Um critério de aceite.</h2>
+    <div class="terms">
+      <div class="term"><div class="term-k">Investimento</div><div class="term-v"><strong>R$ 7.900</strong><br>fixo · escopo fechado · sem hora extra</div></div>
+      <div class="term"><div class="term-k">Duração</div><div class="term-v"><strong>2 semanas</strong><br>assíncrono + 2 calls (30 + 50 min)</div></div>
+      <div class="term"><div class="term-k">Do seu lado</div><div class="term-v">Acesso de leitura a faturas, exports de uso e roster de assentos do mês fechado — ~2h de esforço interno total, com checklist no kickoff.</div></div>
+      <div class="term"><div class="term-k">Vagas</div><div class="term-v">2 sprints por mês. Trabalho de especialista, não de bancada de consultoria.</div></div>
+    </div>
+    <div class="guarantee"><strong>Garantia de reconciliação:</strong> se ao fim das duas semanas o relatório não reconciliar com as suas faturas, você não paga. Reconciliação ao centavo não é promessa de marketing — é o critério de aceite.</div>
+  </section>
+
+  <section class="fade d3">
+    <div class="section-label">// Quem entrega</div>
+    <h2>Quem opera isso todos os dias.</h2>
+    <p class="prose">Eu opero atribuição de custo de IA multi-vendor em produção — centenas de assentos e dezenas de milhares de dólares mensais sob gestão, com telemetria e governança do gasto como trabalho diário, não como slide. A metodologia é pública: publico o método completo em <a href="https://lucianareynaud.medium.com" target="_blank" rel="noopener" style="color: var(--wine-mid);">artigos técnicos</a> e mantenho o <a href="https://lucianareynaud.github.io/prumo/" style="color: var(--wine-mid);">LLM Cost Attribution Kit</a>, produto self-service internacional. O Sprint é o mesmo método, nos seus dados, pelas mãos de quem o desenhou.</p>
+    <p class="prose">Todos os números entregues são <strong>estimativas gerenciais a partir de premissas declaradas</strong> — cada premissa com fonte e dono nomeados. Instrumento de direção, não contabilidade. Essa honestidade está escrita em cada aba.</p>
+    <div class="cta-row" style="margin-top: 28px;">
+      <a class="buy" href="https://wa.me/5516997101555?text=Oi%2C%20Luciana%21%20Vi%20a%20p%C3%A1gina%20do%20Sprint%20de%20Atribui%C3%A7%C3%A3o%20de%20Custo%20de%20IA%20e%20quero%20entender%20como%20funcionaria%20aqui%20na%20empresa.">Conversar no WhatsApp</a>
+      <div class="cta-note">A conversa inicial não custa nada<br>e já sai com diagnóstico honesto</div>
+    </div>
+  </section>
+
+  <footer class="fade d4">
+    <div class="footer-text">
+      Prumo · instrumentos de precisão para gasto de IA<br>
+      <a href="https://lucianareynaud.github.io" target="_blank" rel="noopener">Luciana Reynaud</a> · © 2026 Prumo
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
