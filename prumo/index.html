@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LLM Cost Attribution Kit — per-user AI spend across Claude, OpenAI, Copilot & Cursor | Prumo</title>
-<meta name="description" content="Split every AI invoice per user and per team, reconcile it to the cent, and report CPUW — cost per unit of work. A validated spreadsheet kit with a 31-check data quality battery. By Prumo.">
+<meta name="description" content="Split every AI invoice per user and per team, reconcile it to the cent, and report CPUW — cost per unit of work. A validated spreadsheet kit with a 33-check data quality battery. By Prumo.">
 <link rel="canonical" href="https://lucianareynaud.github.io/prumo/">
 <meta property="og:title" content="LLM Cost Attribution Kit — Prumo">
-<meta property="og:description" content="Per-user, multi-vendor AI spend attribution in one validated spreadsheet. Reconciles to the cent. 31 automated checks.">
+<meta property="og:description" content="Per-user, multi-vendor AI spend attribution in one validated spreadsheet. Reconciles to the cent. 33 automated checks.">
 <meta property="og:type" content="product">
 <meta property="og:url" content="https://lucianareynaud.github.io/prumo/">
 <script type="application/ld+json">
@@ -18,7 +18,7 @@
       "@type": "Product",
       "name": "LLM Cost Attribution Kit",
       "brand": { "@type": "Brand", "name": "Prumo" },
-      "description": "Per-user, multi-vendor AI spend attribution spreadsheet with a 31-check data quality battery and an 8-page implementation playbook. Covers seat-based, usage-based, and hybrid billing (Claude, OpenAI API, GitHub Copilot, Cursor).",
+      "description": "Per-user, multi-vendor AI spend attribution spreadsheet with a 33-check data quality battery and an 8-page implementation playbook. Covers seat-based, usage-based, and hybrid billing (Claude, OpenAI API, GitHub Copilot, Cursor).",
       "offers": {
         "@type": "Offer",
         "price": "79",
@@ -30,6 +30,7 @@
     {
       "@type": "DefinedTerm",
       "name": "CPUW (Cost Per Unit of Work)",
+      "alternateName": "cost per task (operational)",
       "description": "CPUW is a metric that expresses AI spend as the cost of one completed unit of business work — a resolved ticket, a merged pull request, a delivered report — rather than raw tokens or invoice totals. It connects LLM billing data to business output so AI cost becomes comparable, budgetable, and attributable per team.",
       "inDefinedTermSet": "https://lucianareynaud.github.io/prumo/#cpuw"
     },
@@ -40,6 +41,11 @@
           "@type": "Question",
           "name": "What is CPUW?",
           "acceptedAnswer": { "@type": "Answer", "text": "CPUW (Cost Per Unit of Work) expresses AI spend as the cost of one completed unit of business output — a resolved ticket, a merged PR, a delivered report — instead of raw tokens or invoice totals. Formula: team AI cost divided by units of work the team delivered in the same period." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is CPUW different from cost per task?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cost per task is a benchmark metric: what it costs a model to complete a test task, useful for model selection. CPUW is the operational counterpart: the cost of one completed unit of business work — including retries, fallbacks, orchestration and human review — computed per team from actual invoices. Benchmarks compare models; CPUW governs spend." }
         },
         {
           "@type": "Question",
@@ -350,7 +356,7 @@
     <span>invoiced <strong>$8,460.00</strong></span>
     <span>attributed <strong>$8,460.00</strong></span>
     <span>difference <strong>$0.00</strong></span>
-    <span class="ok">31 checks · status OK</span>
+    <span class="ok">33 checks · status OK</span>
   </div>
 
   <section class="fade d2">
@@ -366,7 +372,7 @@
     <div class="cards">
       <div class="card">
         <div class="card-name">The workbook</div>
-        <p>8 tabs, fully formula-driven, preallocated for 200 users × 20 teams × 8 cost components. Seat, usage, and hybrid billing. A 31-check data quality battery gates every number behind an OK status.</p>
+        <p>8 tabs, fully formula-driven, preallocated for 200 users × 20 teams × 8 cost components. Seat, usage, and hybrid billing. A 33-check data quality battery gates every number behind an OK status.</p>
       </div>
       <div class="card">
         <div class="card-name">The playbook</div>
@@ -397,6 +403,7 @@
     <div class="formula">CPUW = team AI cost ÷ units of work delivered in the same period</div>
     <p class="prose">Why it works: tokens are not comparable across teams or months; units of work are. <strong>"$0.83 per resolved ticket" survives a budget meeting. "41 million tokens" does not.</strong> CPUW is comparable within a team over time and, cautiously, across teams that declare the exact same unit — which is why the kit computes it per team only, and shows N/A rather than zero when a team has cost but no declared output.</p>
     <p class="prose">What CPUW is not: an ROI claim. It states what a unit costs in AI spend; it does not prove AI caused the output. That honesty is deliberate — credibility, once spent, doesn't come back.</p>
+    <p class="prose">How CPUW relates to <strong>"cost per task"</strong>: benchmarks measure the cost for a model to complete a test task — useful for choosing models. CPUW is the operational sibling: the cost of a completed unit of <em>business</em> work, with retries, fallbacks, orchestration and human review included, measured from your own invoices. Benchmarks compare models; CPUW governs spend.</p>
   </section>
 
   <section class="fade d4">
